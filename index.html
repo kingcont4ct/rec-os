@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Red eYe Clique OS — Find Your Red Zone</title>
+  <meta name="description" content="Interactive Red eYe Clique operating system to find your Red Zone with tips, tricks, and techniques." />
+  <!-- Preload Google Fonts for Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Root variables define the color palette for the entire OS,
+      ensuring brand consistency. The dark theme with high‑contrast
+      accent colors is central to the Red eYe Clique aesthetic. */
+    :root{
+      --red:#FF0000;
+      --black:#000000;
+      --blue:#007FFF; /* Electric Blue for links and accents */
+      --gray:#25282A;
+      --green:#39FF14;
+      --white:#FFFFFF;
+      --bg:#0b0b0e;
+      --card:#13131a;
+      --card2:#151520;
+      --text:#e9e9ef;
+      --muted:#a9a9b3;
+      --border:rgba(255,255,255,0.1);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--bg),#0e0e14);color:var(--text);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;line-height:1.5;scroll-behavior:smooth;}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{color:var(--white)}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    /* Sticky navigation bar for easy section access */
+    .nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;gap:16px;align-items:center;padding:12px 16px;height:60px}
+    .brand{font-weight:800;letter-spacing:.2px;font-size:18px}
+    .brand-dot{color:var(--red);font-size:20px;margin-right:6px}
+    .nav-links{margin-left:auto;display:none;gap:18px}
+    .nav-links a{color:#ddd;text-decoration:none;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+    .nav-links a:hover{color:var(--white)}
+    @media(min-width:900px){.nav-links{display:flex}}
+    .section{padding:60px 0}
+    h1{font-size:clamp(2rem,5vw,3rem);margin:0 0 10px;line-height:1.1}
+    h2{font-size:clamp(1.5rem,4vw,2rem);margin:0 0 8px;line-height:1.2}
+    p.lead{color:var(--muted);max-width:740px;font-size:clamp(1rem,2.5vw,1.1rem)}
+    .chip{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;margin-right:8px;border:1px solid var(--border);background:rgba(255,255,255,0.05)}
+    .btn{display:inline-flex;gap:8px;align-items:center;background:var(--red);color:#fff;padding:12px 20px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;font-weight:700;transition:background-color 0.2s ease}
+    .btn:hover{background:#b90e0e}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px}
+    .grid{display:grid;gap:16px}
+    /* Responsive grid columns for mobile‑first design */
+    @media(min-width:768px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    @media(min-width:1024px){.grid.cols-3{grid-template-columns:1fr 1fr 1fr}}
+    details{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    details+details{margin-top:10px}
+    summary{list-style:none;cursor:pointer;background:var(--card2);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    .summary-arrow{opacity:.7;transition:transform .2s ease;font-size:20px}
+    details[open] .summary-arrow{transform:rotate(180deg)}
+    .details-body{padding:18px;background:#0e0e14}
+    .muted{color:var(--muted)}
+    .kicker{color:#bbb;font-size:12px;text-transform:uppercase;letter-spacing:.2px;font-weight:700}
+    .input,select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:#0b0b12;color:#fff;font-size:16px}
+    label{font-size:16px;color:#d8d8e0;margin-bottom:8px;display:block;font-weight:700}
+    .checkbox{width:18px;height:18px;accent-color:var(--red)}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .copy{background:transparent;border:1px solid var(--border);color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700;transition:background-color 0.2s ease}
+    .copy:hover{background:#1a1a23}
+    .pill{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid var(--border);font-size:11px;font-weight:700}
+    .footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font-size:14px}
+    .hero{border:1px solid var(--border);border-radius:22px;padding:32px 24px;background:
+      radial-gradient(circle at 10% -10%, rgba(255,0,0,.15), transparent 40%),
+      radial-gradient(circle at 100% 110%, rgba(0,127,255,.12), transparent 35%)}
+    .spacer{height:16px}
+    .small{font-size:14px}
+    .link-btn{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--border);padding:8px 12px;border-radius:10px;text-decoration:none;color:#fff;transition:background-color 0.2s ease}
+    .link-btn:hover{background:#171722}
+    .points{font-weight:800;color:var(--green)}
+    .tag{padding:4px 10px;border-radius:999px;background:rgba(57,255,20,.12);border:1px solid var(--border);font-size:11px;color:var(--green);font-weight:700}
+    .card-title{display:flex;justify-content:space-between;align-items:center}
+    /* Logo gallery */
+    .logo-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px,1fr));gap:16px}
+    .logo-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:12px;text-align:center}
+    .logo-card figcaption{margin-top:8px;font-size:12px;color:var(--muted)}
+    .logo-img{width:100%;max-height:140px;object-fit:contain;display:block;margin:0 auto;filter:none}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="brand-dot">●</span>Red eYe OS</div>
+      <nav class="nav-links">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#finder">Finder</a>
+        <a href="#pillars">Pillars</a>
+        <a href="#missions">Missions</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#logos">Logos</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Dashboard / Hero section -->
+    <section id="dashboard" class="section">
+      <div class="container">
+        <div class="hero">
+          <h1>Find Your <span style="color:var(--red)">Red Zone</span></h1>
+          <p class="lead">This is your behavioral operating system for lifestyle transformation. REC exists to help people identify and live from their Red Zone—a state of peak passion and flow where focus, purpose, and execution align. Use the Finder to set your state, deploy a copy‑ready ritual, then log Missions for points.</p>
+          <div class="row" style="margin-top:16px">
+            <span class="chip" style="background:rgba(255,0,0,.1)">REC OS</span>
+            <span class="chip" style="background:rgba(0,127,255,.12)">Flow State</span>
+            <span class="chip" style="background:rgba(57,255,20,.12)">Gamified</span>
+          </div>
+          <div style="margin-top:20px">
+            <a class="btn" href="#finder">Start — Find My Red Zone →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Finder Section -->
+    <section id="finder" class="section">
+      <div class="container">
+        <h2>Find Your Red Zone</h2>
+        <p class="muted">Use this quick selector to get a mood & pillar recommendation, plus a copy‑ready ritual.</p>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="grid cols-3">
+            <div>
+              <label for="energySel">Energy</label>
+              <select id="energySel" class="input">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div>
+              <label for="focusSel">Primary Focus</label>
+              <select id="focusSel" class="input">
+                <option value="creative" selected>Creative work</option>
+                <option value="admin">Execution / admin</option>
+                <option value="reflective">Journaling / planning</option>
+                <option value="physical">Training / movement</option>
+              </select>
+            </div>
+            <div>
+              <label for="stressSel">Stress Level</label>
+              <select id="stressSel" class="input">
+                <option value="calm" selected>Calm</option>
+                <option value="tense">Tense</option>
+                <option value="fried">Fried</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid cols-2" style="margin-top:16px">
+            <div class="card" style="background:var(--card2)">
+              <div class="card-title">
+                <div>
+                  <div class="kicker">Recommended Mood</div>
+                  <div id="moodName" style="font-weight:800;font-size:20px">Creative Spark</div>
+                  <div id="moodFocus" class="small muted">Focus: Fuel (brain energy) + Flow</div>
+                </div>
+                <span id="moodTag" class="tag">spark</span>
+              </div>
+              <div id="moodCues" style="margin-top:12px;display:flex;flex-direction:column;gap:8px"></div>
+              <div class="row" style="margin-top:16px">
+                <button id="copyRitualBtn" class="copy">Copy Ritual</button>
+                <span id="copyState" class="small muted"></span>
+              </div>
+            </div>
+            <div class="card" style="background:var(--card2)">
+              <div class="kicker">Quick Techniques</div>
+              <details>
+                <summary>90‑Second State Shift <span class="summary-arrow">▼</span></summary>
+                <div class="details-body small">
+                  <ol style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px">
+                    <li>Stand up, shake arms, and roll shoulders 5×.</li>
+                    <li>Inhale 4s, hold 2s, exhale 6s — repeat 6 rounds.</li>
+                    <li>Ask: “What makes this next 25 min a win?”</li>
+                    <li>Set timer; start first tiny action (≤2 minutes).</li>
+                    <li>After timer: log one win → continue or recharge.</li>
+                  </ol>
+                </div>
+              </details>
+              <details>
+                <summary>Box Breathing (4‑4‑4‑4) <span class="summary-arrow">▼</span></summary>
+                <div class="details-body small">Inhale 4s • hold 4s • exhale 4s • hold 4s — repeat for 5 cycles to downshift your nervous system.</div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section id="pillars" class="section">
+      <div class="container">
+        <h2>The Four Pillars</h2>
+        <p class="muted">Fuel • Form • Flow • Fortify — with actions, tips, and links.</p>
+        <div class="spacer"></div>
+        <div id="pillarsGrid" class="grid cols-2"></div>
+      </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section id="missions" class="section">
+      <div class="container">
+        <h2>Missions & Points</h2>
+        <p class="muted">Check off today’s habits to earn Red Flame Points and build momentum.</p>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <div>
+              <div class="kicker">Today</div>
+              <div id="todayKey" style="font-weight:800;font-size:18px">—</div>
+            </div>
+            <div class="row">
+              <div class="small">Points: <span id="points" class="points">0</span></div>
+              <button id="resetBtn" class="copy">Reset</button>
+            </div>
+          </div>
+          <div id="missionsList" class="grid cols-2" style="margin-top:16px"></div>
+          <p class="small muted" style="margin-top:12px">Tip: Redeem point milestones for discounts and exclusive drops.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="section">
+      <div class="container">
+        <h2>Intelligent Product Roadmap</h2>
+        <p class="muted">This roadmap is directly informed by user insights and feedback from the Activation and Immersion phases.</p>
+        <div class="spacer"></div>
+        <div id="roadmapGrid" class="grid cols-2"></div>
+      </div>
+    </section>
+
+    <!-- Logos Section -->
+    <section id="logos" class="section">
+      <div class="container">
+        <h2>Brand & Partner Logos</h2>
+        <p class="muted">A collection of brand assets and partner logos for use in marketing materials.</p>
+        <div class="spacer"></div>
+        <div id="logoGrid" class="logo-grid"></div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+      <div class="container">
+        <div class="hero" style="text-align:center">
+          <h2>Red Zone Readiness Quiz</h2>
+          <p class="lead" style="margin-left:auto;margin-right:auto">How ready are you to hit the Red Zone? Take this quiz to assess your energy, focus, flow‑fit, and motivation.</p>
+          <div style="margin-top:20px">
+            <a class="btn" href="assets/docs/red-zone-readiness-quiz.html" target="_blank">Take the Quiz →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container row" style="justify-content:space-between">
+      <div>© <span id="year">2025</span> Red eYe Clique — “What do your eYes get RED for?”</div>
+      <div class="row">
+        <a class="link-btn" href="#dashboard">↑ Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal container for errors or alerts -->
+  <div id="modal" class="modal-overlay">
+    <div id="modal-content" class="modal-content"></div>
+  </div>
+
+  <script>
+    // --- Data Structures ---------------------------------------------------
+    // Pillars define the four core areas of lifestyle change.
+    const PILLARS = [
+      {
+        id: "fuel",
+        title: "Fuel (Nutrition)",
+        summary: "Adopt a nutrient-dense, Mediterranean-style pattern. Aim for 50% of each plate from vegetables & fruits.",
+        actions: [
+          "Mission: Power Your Passion — log vegetables/fruits; target ≥ 50% of plate.",
+          "Track in the Red eYe Fuel Tracker (journal/app).",
+          "Try: Nightclockers Cold Brew, Moonlight Matcha, Red Zone Vitality Blend."
+        ],
+        tips: [
+          "Batch-cook grains/legumes on Sunday; build bowls fast midweek.",
+          "Color rule: 3 colors on every plate → better micronutrient coverage.",
+          "Hydration primer: drink a glass of water before every meal."
+        ]
+      },
+      {
+        id: "form",
+        title: "Form (Movement)",
+        summary: "≥150–300 min/week moderate cardio + 2–3 strength days. Log ≥30 min movement daily.",
+        actions: [
+          "Mission: Flow into Form — earn Red Flame Points for consistency.",
+          "Strength x2–3/week; walking/elliptical/HIIT to fill aerobic minutes.",
+          "Nightclockers Lo‑Fi Ritual: movement cards + playlist for late sessions."
+        ],
+        tips: [
+          "Use micro-sets (1–2 sets) between desk blocks — accumulate volume.",
+          "Walk calls: pace while on the phone; log steps automatically.",
+          "Pair strength with a fixed song setlist to anchor the habit."
+        ]
+      },
+      {
+        id: "flow",
+        title: "Flow (Mind + Mood)",
+        summary: "Stress management, sleep hygiene, resilience. 5‑minute breathwork daily; streaks earn rewards.",
+        actions: [
+          "Mission: Control the Flame — do a 5‑minute breath reset before deep work.",
+          "Use the Red Zone Blend roller; F.L.O.W. devotional audio nightly.",
+          "Weighted blanket + dark room for quicker downshift."
+        ],
+        tips: [
+          "3‑2‑1 sleep rule: no food 3h, no screens 2h, no work 1h before bed.",
+          "Swap bright white bulbs after 8pm for warm lighting.",
+          "Use a single focus question to enter flow: ‘What would make this 1 block a win?’"
+        ]
+      },
+      {
+        id: "fortify",
+        title: "Fortify (Recovery & Resilience)",
+        summary: "7–9 hours sleep, hydrate, and minimize toxins. Rest to Rise.",
+        actions: [
+          "Mission: Rest to Rise — log sleep duration & water intake.",
+          "Recovery Box: sleep mask, hydration tracker, magnesium sachets.",
+          "Wind-down stack: breathwork → journal → lights out."
+        ],
+        tips: [
+          "Anchor wake time (even on weekends) → stabilizes circadian rhythm.",
+          "Morning light exposure ≥5–10 min → better energy later.",
+          "Electrolyte pinch (salt + lemon) if training hard or in heat."
+        ]
+      }
+    ];
+
+    // Mood configurations for creative, tactical, reflective and physical states.
+    const MOODS = [
+      {
+        id: "spark",
+        name: "Creative Spark",
+        cues: [
+          "Electric Blue LEDs + a Vivid Red pen on desk.",
+          "Diffuse citrus (grapefruit / orange).",
+          "Open inspiration board; 5–10 min free-write or mind-map.",
+          "Play Spark playlist (cinematic / lo‑fi)."
+        ]
+      },
+      {
+        id: "grind",
+        name: "Tactical Grind",
+        cues: [
+          "Clear desk; highlight top‑3 tasks in Neon Green.",
+          "Peppermint/eucalyptus cue; start Pomodoro 25/5.",
+          "Play low‑tempo lo‑fi or 12 Hz alpha wave focus track.",
+          "Wear the Red eYe Reminder wristband to ‘lock in’."
+        ]
+      },
+      {
+        id: "reflect",
+        name: "Reflective Recharge",
+        cues: [
+          "Warm light or candle; sandalwood/cedar scent.",
+          "Read your daily KJV verse; journal 3 wins + 1 intention.",
+          "5‑minute breath prayer or box breathing."
+        ]
+      },
+      {
+        id: "beast",
+        name: "Physical Activation",
+        cues: [
+          "Hydrate, dynamic warm‑up, cue ‘Beast’ playlist.",
+          "Track key lifts / cardio metrics; cool‑down + breathwork.",
+          "Log one performance note to close the loop."
+        ]
+      }
+    ];
+
+    // Missions available for daily tracking.
+    const MISSIONS = [
+      { id: "veg", label: "Veggies & Fruit ≥ 50% plate", points: 5, pillar: "fuel" },
+      { id: "mv30", label: "30+ min movement", points: 10, pillar: "form" },
+      { id: "breath5", label: "5‑min breathwork", points: 3, pillar: "flow" },
+      { id: "sleep", label: "7–9 hrs sleep", points: 7, pillar: "fortify" },
+      { id: "water", label: "Hydration goal met", points: 4, pillar: "fortify" }
+    ];
+
+    // Product roadmap entries for capsules and campaigns.
+    const ROADMAP = [
+        { capsule: "Unleash Your Apex", subBrand: "Apex Achievers", timing: "July–August", includes: "Compression Gear, Oil, Red Zone Planner" },
+        { capsule: "Red eYe Ritual Kit", subBrand: "Nightclockers", timing: "August–September", includes: "Hoodie, Playlist Card, Scent Ritual" },
+        { capsule: "Antidote 2.0", subBrand: "Zombie Killers", timing: "September", includes: "Mission Deck, Survival Patch, Coin" },
+        { capsule: "Faith Over Fear", subBrand: "F.L.O.W.", timing: "October", includes: "Scripture Oil, Flow Band, Journal" }
+    ];
+
+    // Logo definitions for local assets. Clicking opens the full image.
+    const LOGOS = [
+      { src: 'assets/img/apex-mark.png',      alt: 'Apex Achievers mark',    caption: 'Apex Achievers — Mark' },
+      { src: 'assets/img/apex-wordmark.png',  alt: 'Apex Achievers wordmark',caption: 'Apex Achievers — Wordmark' },
+      { src: 'assets/img/nightowl-logo.png',  alt: 'Nightclockers owl',      caption: 'Nightclockers — Owl' },
+      { src: 'assets/img/nightowl-type.png',  alt: 'Nightclockers type',     caption: 'Nightclockers — Wordmark' },
+      { src: 'assets/img/rec-eye.png',        alt: 'Red eYe Clique eye',     caption: 'Red eYe Clique — Eye' },
+      { src: 'assets/img/rec-wordmark.png',   alt: 'Red eYe Clique wordmark',caption: 'Red eYe Clique — Wordmark' }
+    ];
+
+    // Helpers
+    const qs = (sel, root=document) => root.querySelector(sel);
+    const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const todayKey = () => new Date().toISOString().split('T')[0];
+
+    // Modal support
+    function showModal(title, message) {
+      const modal = qs('#modal');
+      const modalContent = qs('#modal-content');
+      modalContent.innerHTML = `
+          <h3 style="color: var(--red); margin-bottom: 12px; font-size: 20px;">${title}</h3>
+          <p class="muted" style="margin-bottom: 20px;">${message}</p>
+          <button id="closeModalBtn" class="btn">Close</button>
+      `;
+      modal.classList.add('visible');
+      qs('#closeModalBtn').onclick = () => modal.classList.remove('visible');
+    }
+
+    // Clipboard copy with feedback
+    function copyTextToClipboard(text, feedbackElement) {
+      const originalText = feedbackElement.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        feedbackElement.textContent = "Copied!";
+        setTimeout(() => { feedbackElement.textContent = originalText; }, 1500);
+      }).catch(err => {
+        console.error("Failed to copy text:", err);
+        showModal("Copy Failed", "Could not copy text to clipboard.");
+      });
+    }
+
+    /** Finder: compute a suggestion based on energy, focus, and stress. */
+    function computeSuggestion(energy, focus, stress){
+      if(stress !== "calm") return { mood: "Reflective Recharge", id: "reflect", rec: "Fortify / Flow" };
+      if(focus === "physical") return { mood: "Physical Activation", id: "beast", rec: "Form" };
+      if(focus === "admin") return { mood: "Tactical Grind", id: "grind", rec: "Flow (focus)" };
+      if(focus === "creative") return { mood: "Creative Spark", id: "spark", rec: "Fuel (brain energy) + Flow" };
+      return { mood: "Creative Spark", id: "spark", rec: "Flow" };
+    }
+
+    /** Render the finder section and attach update handlers. */
+    function renderFinder(){
+      const energySel = qs("#energySel"), focusSel = qs("#focusSel"), stressSel = qs("#stressSel");
+      const copyStateSpan = qs("#copyState");
+      function update(){
+        const { mood, id, rec } = computeSuggestion(energySel.value, focusSel.value, stressSel.value);
+        const m = MOODS.find(x => x.id === id);
+        qs("#moodName").textContent = m.name;
+        qs("#moodFocus").textContent = "Focus: " + rec;
+        qs("#moodTag").textContent = m.id;
+        qs("#moodCues").innerHTML = m.cues.map(c => `<div class="small">• ${c}</div>`).join("");
+        const ritual = `${m.name} — Ritual\n\n` + m.cues.map((c,i)=>`${i+1}. ${c}`).join("\n");
+        qs("#copyRitualBtn").onclick = () => copyTextToClipboard(ritual, copyStateSpan);
+      }
+      [energySel, focusSel, stressSel].forEach(el => el.addEventListener("change", update));
+      update();
+    }
+
+    /** Render pillars. */
+    function renderPillars(){
+      qs("#pillarsGrid").innerHTML = PILLARS.map(p => `
+        <div class="card">
+          <div class="card-title">
+            <h3 style="margin:0">${p.title}</h3>
+            <span class="pill">${p.id}</span>
+          </div>
+          <p class="small muted" style="margin-top:6px">${p.summary}</p>
+          <details>
+            <summary>Actions & Missions <span class="summary-arrow">▼</span></summary>
+            <div class="details-body small">
+              <ul style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px">${p.actions.map(a => `<li>${a}</li>`).join("")}</ul>
+            </div>
+          </details>
+          <details>
+            <summary>Quick Tips <span class="summary-arrow">▼</span></summary>
+            <div class="details-body small">
+              <ul style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px">${p.tips.map(t => `<li>${t}</li>`).join("")}</ul>
+            </div>
+          </details>
+        </div>
+      `).join("");
+    }
+
+    /** Render the missions board and sync with localStorage. */
+    function renderMissions(){
+      const key = todayKey();
+      qs("#todayKey").textContent = key;
+      const storageKey = "rec.missions." + key;
+      let state = {};
+      try{ state = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch{ state = {}; }
+      const list = qs("#missionsList");
+      function draw(){
+        let pts = 0;
+        list.innerHTML = MISSIONS.map(m => {
+          const checked = !!state[m.id];
+          if(checked) pts += m.points;
+          return `
+            <label class="card row small" style="align-items:center;cursor:pointer;background-color:${checked ? 'var(--card2)' : 'var(--card)'};">
+              <input class="checkbox" type="checkbox" ${checked ? "checked" : ""} data-id="${m.id}" />
+              <span style="flex:1">${m.label}</span>
+              <span class="pill">+${m.points}</span>
+            </label>
+          `;
+        }).join("");
+        qs("#points").textContent = pts;
+        qsa("input[type=checkbox]", list).forEach(cb => {
+          cb.addEventListener("change", () => {
+            state[cb.dataset.id] = cb.checked;
+            localStorage.setItem(storageKey, JSON.stringify(state));
+            draw();
+          });
+        });
+      }
+      draw();
+      qs("#resetBtn").onclick = () => {
+        state = {};
+        localStorage.removeItem(storageKey);
+        draw();
+      };
+    }
+
+    /** Render the product roadmap. */
+    function renderRoadmap(){
+      qs("#roadmapGrid").innerHTML = ROADMAP.map(item => `
+        <div class="card">
+          <div class="card-title">
+            <h3 style="margin:0">${item.capsule}</h3>
+            <span class="pill">${item.subBrand}</span>
+          </div>
+          <p class="small muted" style="margin-top:6px"><strong>Drop Timing:</strong> ${item.timing}</p>
+          <div class="details-body small" style="background:var(--card2);border-radius:12px;padding:12px;margin-top:12px">
+            <strong>Includes:</strong> ${item.includes}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /** Render the logo gallery using local assets. */
+    function renderLogos(){
+      qs("#logoGrid").innerHTML = LOGOS.map(logo => `
+        <figure class="logo-card">
+          <a href="${logo.src}" target="_blank" rel="noreferrer">
+            <img src="${logo.src}" alt="${logo.alt}" class="logo-img" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/151520/FFFFFF?text=Image+Not+Found';">
+          </a>
+          <figcaption>${logo.caption}</figcaption>
+        </figure>
+      `).join("");
+    }
+
+    // Initialize everything when the DOM is ready.
+    document.addEventListener("DOMContentLoaded", () => {
+      qs("#year").textContent = new Date().getFullYear();
+      renderFinder();
+      renderPillars();
+      renderMissions();
+      renderRoadmap();
+      renderLogos();
+    });
+  </script>
+</body>
+</html>
