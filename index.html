@@ -85,6 +85,30 @@
     .logo-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:12px;text-align:center}
     .logo-card figcaption{margin-top:8px;font-size:12px;color:var(--muted)}
     .logo-img{width:100%;max-height:140px;object-fit:contain;display:block;margin:0 auto;filter:none}
+        /* Resources grid – clean on mobile */
+    .resources-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:12px;
+    }
+    .resource-card{
+      background:var(--card2);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+    }
+    .resource-card a{
+      display:block;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .resource-card p{
+      margin:0.35rem 0 0;
+      color:var(--muted);
+      font-size:12px;
+    }
+
   </style>
 </head>
 <body>
@@ -96,6 +120,7 @@
         <a href="#finder">Finder</a>
         <a href="#pillars">Pillars</a>
         <a href="#missions">Missions</a>
+              <a href="#resources">Resources</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#logos">Logos</a>
         <a href="#quiz">Quiz</a>
@@ -231,7 +256,17 @@
     </section>
 
     <!-- Roadmap Section -->
-    <section id="roadmap" class="section">
+    
+    <!-- Resources Section -->
+<section id="resources" class="section">
+  <div class="container">
+    <h2>Resources</h2>
+    <p class="muted">Timers, journals, templates, and quick reads.</p>
+    <div class="spacer"></div>
+    <div id="resourcesGrid" class="resources-grid"></div>
+  </div>
+</section>
+<section  class="section">
       <div class="container">
         <h2>Intelligent Product Roadmap</h2>
         <p class="muted">This roadmap is directly informed by user insights and feedback from the Activation and Immersion phases.</p>
@@ -413,6 +448,28 @@
       { src: 'assets/img/rec-eye.png',        alt: 'Red eYe Clique eye',     caption: 'Red eYe Clique — Eye' },
       { src: 'assets/img/rec-wordmark.png',   alt: 'Red eYe Clique wordmark',caption: 'Red eYe Clique — Wordmark' }
     ];
+    
+    // Resources definition
+    const RESOURCES = [
+      { title:"3-Minute Ramp Timer", href:"assets/docs/red-zone-ramp-timer.html", note:"Countdown + chime" },
+      { title:"Weekly Red Zone Checkup", href:"assets/docs/weekly-red-zone-recap.html", note:"Reflect & plan" },
+      { title:"Meal Plan Template", href:"assets/docs/meal-prep-template.html", note:"Simple, printable" },
+      { title:"Health Manual (Quick Guide)", href:"assets/docs/health-manual.html", note:"Foundations" },
+      { title:"Readiness Quiz", href:"assets/docs/red-zone-readiness-quiz.html", note:"16 questions" },
+      { title:"Audio: Unpacking Red eYe Clique", href:"assets/audio/unpacking-red-eye-clique.mp3", note:"MP3" }
+    ];
+
+    // Render Resources
+    function renderResources(){
+      const grid = qs("#resourcesGrid");
+      grid.innerHTML = RESOURCES.map(r => `
+        <div class=\"resource-card\">
+          <a href=\"${r.href}\" target=\"_blank\" rel=\"noopener\">${r.title} →</a>
+          <p>${r.note}</p>
+        </div>
+      `).join("");
+    }
+
 
     // Helpers
     const qs = (sel, root=document) => root.querySelector(sel);
@@ -568,6 +625,8 @@
       renderFinder();
       renderPillars();
       renderMissions();
+          renderResources();
+      
       renderRoadmap();
       renderLogos();
     });
