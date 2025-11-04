@@ -441,12 +441,12 @@
 
     // Logo definitions for local assets. Clicking opens the full image.
     const LOGOS = [
-      { src: 'assets/img/apex-mark.png',      alt: 'Apex Achievers mark',    caption: 'Apex Achievers — Mark' },
-      { src: 'assets/img/apex-wordmark.png',  alt: 'Apex Achievers wordmark',caption: 'Apex Achievers — Wordmark' },
-      { src: 'assets/img/nightowl-logo.png',  alt: 'Nightclockers owl',      caption: 'Nightclockers — Owl' },
-      { src: 'assets/img/nightowl-type.png',  alt: 'Nightclockers type',     caption: 'Nightclockers — Wordmark' },
-      { src: 'assets/img/rec-eye.png',        alt: 'Red eYe Clique eye',     caption: 'Red eYe Clique — Eye' },
-      { src: 'assets/img/rec-wordmark.png',   alt: 'Red eYe Clique wordmark',caption: 'Red eYe Clique — Wordmark' }
+      { src: 'apex-mark.png',      alt: 'Apex Achievers mark',    caption: 'Apex Achievers — Mark' },
+      { src: 'apex-wordmark.png',  alt: 'Apex Achievers wordmark',caption: 'Apex Achievers — Wordmark' },
+      { src: 'nightowl-logo.png',  alt: 'Nightclockers owl',      caption: 'Nightclockers — Owl' },
+      { src: 'nightowl-type.png',  alt: 'Nightclockers type',     caption: 'Nightclockers — Wordmark' },
+      { src: 'rec-eye.png',        alt: 'Red eYe Clique eye',     caption: 'Red eYe Clique — Eye' },
+      { src: 'rec-wordmark.png',   alt: 'Red eYe Clique wordmark',caption: 'Red eYe Clique — Wordmark' }
     ];
     
     // Resources definition
@@ -612,7 +612,7 @@
       qs("#logoGrid").innerHTML = LOGOS.map(logo => `
         <figure class="logo-card">
           <a href="${logo.src}" target="_blank" rel="noreferrer">
-            <img src="${logo.src}" alt="${logo.alt}" class="logo-img" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/151520/FFFFFF?text=Image+Not+Found';">
+            <img src="${logo.src}" alt="${logo.alt}" class="logo-img" loading="lazy">
           </a>
           <figcaption>${logo.caption}</figcaption>
         </figure>
