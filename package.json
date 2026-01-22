@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "This repository contains the **Red eYe Clique Operating System**, a single–page web app for finding your Red Zone, logging daily missions, exploring product roadmaps and viewing brand assets.  It’s a static site designed for GitHub Pages or any other static hosting platform.",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingcont4ct/rec-os.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kingcont4ct/rec-os/issues"
+  },
+  "homepage": "https://github.com/kingcont4ct/rec-os#readme",
+  "dependencies": {
+    "jsdom": "^27.1.0"
+  }
+}
