@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test for Image Placeholder</title>
+</head>
+<body>
+    <h1>Test for Image Placeholder</h1>
+    <div id="test-result"></div>
+    <iframe src="../index.html" id="test-frame" style="width: 100%; height: 600px;"></iframe>
+
+    <script>
+        const testResult = document.getElementById('test-result');
+        const iframe = document.getElementById('test-frame');
+
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const logoGrid = iframeDoc.getElementById('logoGrid');
+
+            if (!logoGrid) {
+                testResult.innerHTML = '<p style="color:red">Test Failed: logoGrid not found</p>';
+                return;
+            }
+
+            // Inject a broken image link into the LOGOS array
+            iframe.contentWindow.eval(`
+                LOGOS.push({ src: 'assets/img/non-existent.png', alt: 'Non-existent image', caption: 'This should be a placeholder' });
+                renderLogos();
+            `);
+
+            // Check the result after a short delay to allow for the image to fail loading
+            setTimeout(() => {
+                const brokenImage = logoGrid.querySelector('img[alt="Non-existent image"]');
+                if (brokenImage && brokenImage.src === 'https://placehold.co/400x300/151520/FFFFFF?text=Image+Not+Found') {
+                    testResult.innerHTML = '<p style="color:green">Test Passed!</p>';
+                } else {
+                    testResult.innerHTML = `<p style="color:red">Test Failed!</p><p>Expected src: https://placehold.co/400x300/151520/FFFFFF?text=Image+Not+Found</p><p>Actual src: ${brokenImage ? brokenImage.src : 'not found'}</p>`;
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
