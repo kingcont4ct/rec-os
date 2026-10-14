@@ -116,9 +116,99 @@ html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}
 .rec-save-note{padding:10px 14px;margin:12px auto;max-width:900px;background:#13131a;color:#f2f2f2;border-left:4px solid #fe0101;border-radius:6px;font:14px/1.5 system-ui}
 :focus-visible{outline:3px solid #39ff14!important;outline-offset:3px!important}
 @media(max-width:550px){.rec-return span{font-size:10px}input,select,textarea,button{max-width:100%}}
-</style></head>
+</style><style id="rec-mobile-layout-v2">
+/* REC responsive shell v2: independent of the Tailwind CDN. */
+body.rec-legacy-page{
+  display:block!important;
+  box-sizing:border-box;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:100dvh;
+  margin:0!important;
+  padding:0!important;
+  overflow-x:clip!important;
+}
+body.rec-legacy-page *,body.rec-legacy-page *::before,body.rec-legacy-page *::after{box-sizing:border-box}
+body.rec-legacy-page >.rec-return{display:flex!important;width:100%;max-width:100%;margin:0;position:relative;z-index:5}
+body.rec-legacy-page > div.bg-white{
+  display:block!important;
+  width:calc(100% - 32px)!important;
+  min-width:0;
+  max-width:1024px!important;
+  margin:24px auto 48px!important;
+}
+body.rec-legacy-page form,body.rec-legacy-page fieldset,body.rec-legacy-page .animated-section{min-width:0;max-width:100%}
+body.rec-legacy-page .grid{display:grid;min-width:0}
+body.rec-legacy-page .grid>*{min-width:0}
+body.rec-legacy-page input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),body.rec-legacy-page select,body.rec-legacy-page textarea{
+  display:block;
+  min-width:0!important;
+  max-width:100%!important;
+  width:100%;
+  font-size:16px;
+}
+body.rec-legacy-page textarea{overflow-wrap:anywhere}
+body.rec-legacy-page button{min-height:44px;max-width:100%;white-space:normal;cursor:pointer}
+body.rec-legacy-page .hidden{display:none!important}
+body.rec-legacy-page #messageBox:not(.hidden){position:fixed!important;inset:0;z-index:1000;display:flex!important;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.66)}
+body.rec-legacy-page #messageBox >div{width:min(100%,440px);max-height:calc(100dvh - 32px);overflow-y:auto}
+body.rec-legacy-page :focus-visible{outline:3px solid #39ff14!important;outline-offset:3px}
+@media(min-width:768px){
+ body.rec-legacy-page .grid[class*="md:grid-cols-2"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.rec-legacy-page .grid[class*="md:grid-cols-3"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+ body.rec-legacy-page .grid[class*="md:grid-cols-5"]{grid-template-columns:repeat(5,minmax(0,1fr))}
+ body.rec-legacy-page [class*="md:col-span-2"]{grid-column:span 2}
+}
+@media(min-width:1024px){
+ body.rec-legacy-page .grid[class*="lg:grid-cols-4"]{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:767px){
+ body.rec-legacy-page >div.bg-white{
+   width:calc(100% - 24px)!important;
+   max-width:none!important;
+   padding:clamp(14px,4vw,22px)!important;
+   margin:12px auto 28px!important;
+   border-radius:14px!important;
+ }
+ body.rec-legacy-page .grid{grid-template-columns:minmax(0,1fr)!important;gap:12px}
+ body.rec-legacy-page [class*="md:col-span"]{grid-column:auto!important}
+ body.rec-legacy-page .animated-section,body.rec-legacy-page .grid[class*="bg-"]{padding:clamp(12px,3vw,18px)!important}
+ body.rec-legacy-page h1{font-size:clamp(1.55rem,7vw,2.15rem)!important;line-height:1.16}
+ body.rec-legacy-page h2{font-size:clamp(1.15rem,5.5vw,1.55rem)!important;line-height:1.25}
+ body.rec-legacy-page p,body.rec-legacy-page label{overflow-wrap:anywhere}
+ body.rec-legacy-page button[type="submit"]{width:100%;min-height:50px}
+ body.rec-legacy-page #quizForm ul{padding:0!important;margin:0;list-style:none}
+ body.rec-legacy-page #quizForm li{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px;padding:14px!important}
+ body.rec-legacy-page #quizForm li >label{width:100%!important;max-width:100%;margin:0!important}
+ body.rec-legacy-page #quizForm li >div{
+   display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+   gap:5px!important;width:100%!important;max-width:100%!important;
+ }
+ body.rec-legacy-page #quizForm li >div label{
+   display:flex!important;justify-content:center;align-items:center;gap:4px;
+   min-width:0;min-height:48px;padding:8px 2px;
+   border-radius:8px;border:1px solid #d1d5db;font-weight:650;
+ }
+ body.rec-legacy-page #quizForm li >div input[type="radio"]{margin:0!important;flex:0 0 19px}
+ body.rec-legacy-page #timerDisplay{font-size:clamp(2.9rem,14vw,5rem)!important;line-height:1.2}
+ body.rec-legacy-page #instructionText{font-size:clamp(1rem,4.4vw,1.3rem)!important;overflow-wrap:anywhere}
+ body.rec-legacy-page:has(#timerDisplay) .flex.flex-col{display:flex!important;flex-direction:column!important}
+ body.rec-legacy-page:has(#timerDisplay) #startButton,
+ body.rec-legacy-page:has(#timerDisplay) #stopButton,
+ body.rec-legacy-page:has(#timerDisplay) #resetButton{width:100%;min-height:50px}
+}
+@media(max-width:375px){
+ body.rec-legacy-page #quizForm li >div label{flex-direction:column!important;font-size:15px}
+ body.rec-legacy-page #quizForm li >div input[type="radio"]{flex:0 0 19px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.rec-legacy-page *,body.rec-legacy-page *::before,body.rec-legacy-page *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
 
-<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
+<body class="rec-legacy-page p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
 <div class="rec-return" role="navigation" aria-label="REC OS"><a href="../../index.html#resources">← Back to REC OS Resources</a><span>RED eYE CLIQUE · RED ZONE OS</span></div>
 
 
