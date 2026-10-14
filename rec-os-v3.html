@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090c">
+<meta name="description" content="REC OS V3 mobile-first homepage.">
+<title>Red eYe Clique OS — V3 Homepage</title>
+<link rel="stylesheet" href="./assets/docs/rec-resource-theme.css">
+<link rel="stylesheet" href="./assets/css/rec-home.css">
+</head>
+<body class="site-page">
+<a class="skip-link" href="#dashboard">Skip to content</a>
+<header class="site-header">
+  <div class="head-top shell">
+    <a class="home-brand" href="#dashboard" aria-label="Red eYe Clique OS home">
+      <img src="./assets/img/rec-eye.png" width="44" height="44" alt="" class="brand-eye">
+      <span class="home-brand-name">RED eYE CLIQUE <small>RED ZONE OS</small></span>
+    </a>
+    <a class="head-action" href="#resources">OPEN TOOLS <span aria-hidden="true">↗</span></a>
+  </div>
+  <nav class="site-nav" aria-label="REC OS primary navigation">
+    <div class="nav-scroll shell">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#finder">State Finder</a>
+      <a href="#pillars">Four Pillars</a>
+      <a href="#missions">Daily Missions</a>
+      <a href="#resources">Resources</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#logos">Brand Marks</a>
+      <a href="#quiz">Readiness Quiz</a>
+    </div>
+  </nav>
+</header>
+
+<main class="site-main">
+<section id="dashboard" class="dashboard-section home-section">
+<div class="shell">
+  <div class="home-hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> AWARENESS → ACTIVATION</div>
+      <h1>Find your <span class="red">Red Zone.</span></h1>
+      <p class="hero-question">What do your eYes get RED for?</p>
+      <p class="hero-description">A practical operating system for identifying what drives you, setting your state, taking focused action and tracking real progress.</p>
+      <div class="hero-actions">
+        <a href="#finder" class="btn btn-primary">Find My State <span aria-hidden="true">→</span></a>
+        <a href="#resources" class="btn btn-secondary">Explore Tools</a>
+      </div>
+      <div class="hero-micro">FOCUS ON THE NEXT MOVE. BUILD THE NEXT WIN.</div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual-inner"><img src="./assets/img/rec-eye.png" alt="" width="260" height="260"></div>
+      <span class="hero-visual-label">RED ZONE / SYSTEM ACTIVE</span>
+    </div>
+  </div>
+
+  <div class="steps-panel" aria-label="How Red Zone OS works">
+    <div class="step-item"><span>01 / ASSESS</span><strong>Check your state</strong><p>Identify your energy, attention and available capacity.</p></div>
+    <div class="step-item"><span>02 / ACTIVATE</span><strong>Choose an action</strong><p>Use a ritual, start a timer, or complete a mission.</p></div>
+    <div class="step-item"><span>03 / REFLECT</span><strong>Log the evidence</strong><p>Record wins and friction. Improve the next cycle.</p></div>
+  </div>
+
+  <div class="quick-start">
+    <div><span class="section-index">QUICK ACCESS</span><h2>Start with one tool.</h2></div>
+    <div class="quick-actions">
+      <a href="./assets/docs/red-zone-ramp-timer.html"><span class="quick-symbol">03</span><span><strong>Start the Ramp</strong><small>Three-minute activation</small></span><b aria-hidden="true">↗</b></a>
+      <a href="./assets/docs/daily-red-zone-journal.html"><span class="quick-symbol">JL</span><span><strong>Open the Journal</strong><small>Plan and reflect</small></span><b aria-hidden="true">↗</b></a>
+      <a href="./assets/docs/red-zone-readiness-quiz.html"><span class="quick-symbol">16</span><span><strong>Take Readiness Quiz</strong><small>16-question assessment</small></span><b aria-hidden="true">↗</b></a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="finder" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">01 / AWARENESS</span><h2>State Finder</h2><p>Give the OS three inputs. Get one practical ritual for the work in front of you.</p></div></div>
+  <div class="surface-panel">
+    <div class="selector-grid">
+      <div class="selector-field"><label for="energySel">Current energy</label><select id="energySel"><option value="low">Low — conserve energy</option><option value="medium" selected>Steady — capable</option><option value="high">High — ready to move</option></select></div>
+      <div class="selector-field"><label for="focusSel">Primary objective</label><select id="focusSel"><option value="creative" selected>Creative work</option><option value="admin">Execution / administration</option><option value="reflective">Reflection / planning</option><option value="physical">Movement / training</option></select></div>
+      <div class="selector-field"><label for="stressSel">Stress level</label><select id="stressSel"><option value="calm" selected>Calm</option><option value="tense">Tense</option><option value="fried">Overloaded</option></select></div>
+    </div>
+    <div class="finder-results">
+      <div class="mood-panel">
+        <div class="card-topline"><span class="section-index">RECOMMENDED STATE</span><span class="small-badge" id="moodTag">spark</span></div>
+        <h3 id="moodName">Creative Spark</h3><p id="moodFocus">Focus: Fuel + Flow</p>
+        <div id="moodCues" class="cue-list"></div>
+        <div class="finder-actions"><button class="btn btn-secondary" id="copyRitualBtn" type="button">Copy Ritual</button><span class="assistive-status" id="copyState" role="status" aria-live="polite"></span></div>
+      </div>
+      <div class="technique-panel">
+        <div class="section-index">RESET PROTOCOLS</div><h3>Shift into action.</h3>
+        <details class="home-details"><summary>90-Second State Shift <span aria-hidden="true">+</span></summary><div class="detail-body"><ol><li>Stand, loosen your shoulders, and reset your posture.</li><li>Use a comfortable slow-breathing rhythm for a few cycles.</li><li>Ask: “What makes the next 25 minutes a win?”</li><li>Write the first small step. Begin.</li></ol></div></details>
+        <details class="home-details"><summary>Box Breathing (4-4-4-4) <span aria-hidden="true">+</span></summary><div class="detail-body"><p>Inhale for four counts, hold for four, exhale for four and pause for four if comfortable. Repeat gently. Stop if you feel dizzy or unwell.</p></div></details>
+        <a class="text-link" href="./assets/docs/red-zone-ramp-timer.html">Open the 3-Minute Ramp Timer ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="pillars" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">02 / FOUNDATIONS</span><h2>The Four Pillars</h2><p>Fuel, Form, Flow and Fortify. Explore actions and practical techniques under each pillar.</p></div></div>
+  <div id="pillarsGrid" class="pillar-grid"></div>
+</div>
+</section>
+
+<section id="missions" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">03 / CONSISTENCY</span><h2>Daily Missions</h2><p>Complete a habit. Record progress. Red Flame Points reflect your completed checklist.</p></div></div>
+  <div class="surface-panel">
+    <div class="mission-head"><div><span class="section-index">TODAY'S LOG</span><div id="todayKey" class="date-display">—</div></div><div class="points-area"><span class="small-badge">RED FLAME POINTS</span><strong id="points">0</strong></div></div>
+    <div id="missionsList" class="mission-grid"></div>
+    <div class="mission-footer"><p>Your missions save in this browser for the current day. Points are not currently redeemable for purchases.</p><button id="resetBtn" type="button" class="btn btn-secondary">Reset Today</button></div>
+  </div>
+</div>
+</section>
+
+<section id="resources" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">04 / TOOLKIT</span><h2>Red Zone Resources</h2><p>Six real tools. Six separate pages. Designed for phones and connected back to this OS.</p></div><span class="section-count">06 TOOLS</span></div>
+  <div id="resourcesGrid" class="resources-grid"></div>
+  <p class="section-footnote">Journal and planner entries save locally to the browser on the device you use. They do not sync across devices.</p>
+</div>
+</section>
+
+<section id="roadmap" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">05 / PRODUCT PIPELINE</span><h2>Concept Roadmap</h2><p>REC sub-brand capsule concepts. Planning information—not a guarantee of release dates or availability.</p></div></div>
+  <div id="roadmapGrid" class="roadmap-grid"></div>
+</div>
+</section>
+
+<section id="logos" class="home-section">
+<div class="shell">
+  <div class="section-head"><div><span class="section-index">06 / BRAND UNIVERSE</span><h2>Brand Marks</h2><p>Core REC, Apex Achievers and Nightclockers marks from the existing brand asset library.</p></div></div>
+  <div id="logoGrid" class="logo-grid"></div>
+</div>
+</section>
+
+<section id="quiz" class="home-section">
+<div class="shell">
+  <div class="quiz-feature">
+    <div><span class="section-index">07 / ASSESSMENT</span><h2>How ready is your Red Zone?</h2><p>Sixteen questions across energy, focus, challenge and meaning. Get a score, see your four domains and choose your next action.</p><a class="btn btn-primary" href="./assets/docs/red-zone-readiness-quiz.html">Take the Readiness Quiz <span aria-hidden="true">↗</span></a></div>
+    <div class="quiz-feature-icon" aria-hidden="true">16<span>QUESTIONS</span></div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="shell footer-inner"><div><strong>RED eYE CLIQUE / RED ZONE OS</strong><p>What do your eYes get RED for?</p><small>© <span id="year">2026</span> Red eYe Clique. All rights reserved.</small></div><a href="#dashboard">↑ Back to top</a></div>
+</footer>
+<div id="modal" class="home-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden><div id="modal-content" class="modal-body"></div></div>
+<script src="./assets/js/rec-home.js" defer></script>
+</body>
+</html>
