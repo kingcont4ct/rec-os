@@ -1,1 +1,1095 @@
-<html><body><h1>Coming soon</h1><p>This page is under construction.</p></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Red Zone Readiness Quiz</title>
+
+    <!-- Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        /* Custom styles for Inter font and general body */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+
+            -moz-osx-font-smoothing: grayscale;
+
+            background-color: #f8fafc; /* Light gray background */
+
+            color: #334155; /* Dark gray text */
+
+        }
+
+        /* Style for radio button appearance (optional, Tailwind usually handles enough) */
+
+        input[type="radio"] {
+
+            -webkit-appearance: none;
+
+            -moz-appearance: none;
+
+            appearance: none;
+
+            display: inline-block;
+
+            width: 1.25rem; /* 20px */
+
+            height: 1.25rem; /* 20px */
+
+            border-radius: 50%;
+
+            border: 2px solid #94a3b8; /* Border color */
+
+            margin-right: 0.5rem; /* Space between radio and label */
+
+            position: relative;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease-in-out;
+
+        }
+
+
+
+        input[type="radio"]:checked {
+
+            background-color: #ef4444; /* Red color for checked */
+
+            border-color: #ef4444;
+
+        }
+
+
+
+        input[type="radio"]:checked::after {
+
+            content: '';
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 0.5rem; /* 8px */
+
+            height: 0.5rem; /* 8px */
+
+            border-radius: 50%;
+
+            background-color: #fff; /* White dot */
+
+        }
+
+
+
+        input[type="radio"]:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Focus ring */
+
+        }
+
+    </style>
+
+<style id="rec-resource-fixes">
+html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}
+.rec-return{background:#09090b;color:#fafafa;padding:13px max(16px,calc((100vw - 1000px)/2));display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;font:600 13px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;border-bottom:2px solid #fe0101}
+.rec-return a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rec-return span{color:#ccc;letter-spacing:.08em}
+.rec-save-note{padding:10px 14px;margin:12px auto;max-width:900px;background:#13131a;color:#f2f2f2;border-left:4px solid #fe0101;border-radius:6px;font:14px/1.5 system-ui}
+:focus-visible{outline:3px solid #39ff14!important;outline-offset:3px!important}
+@media(max-width:550px){.rec-return span{font-size:10px}input,select,textarea,button{max-width:100%}}
+</style></head>
+
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
+<div class="rec-return" role="navigation" aria-label="REC OS"><a href="../../index.html#resources">← Back to REC OS Resources</a><span>RED eYE CLIQUE · RED ZONE OS</span></div>
+
+
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-4xl border border-gray-200">
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-red-600 mb-6 text-center">Red Zone Readiness Quiz</h1>
+
+        <p class="text-lg text-gray-700 mb-8 text-center">
+
+            How ready are you to hit the Red Zone (flow + passion + performance)?
+
+        </p>
+
+
+
+        <div class="mb-8">
+
+            <p class="text-md sm:text-lg font-semibold text-gray-600 mb-4">
+
+                Instructions: Rate each item 1–5
+
+                <span class="block text-sm font-normal text-gray-500 mt-1">
+
+                    1 = strongly disagree • 2 = disagree • 3 = neutral • 4 = agree • 5 = strongly agree
+
+                </span>
+
+            </p>
+
+        </div>
+
+
+
+        <form id="quizForm">
+
+            <!-- Section A: Energy & Recovery -->
+
+            <div class="mb-8 p-4 bg-red-50 rounded-lg border border-red-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4">A. Energy & Recovery</h2>
+
+                <ul class="space-y-6">
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">1. I wake up feeling restored (sleep quality over quantity).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q1" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q1" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q1" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q1" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q1" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">2. I can work 60–90 minutes with steady energy (no major dips).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q2" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q2" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q2" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q2" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q2" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">3. I fuel/hydrate in ways that help me focus (most days).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q3" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q3" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q3" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q3" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q3" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">4. I can down‑regulate stress within 2–5 minutes using breath or music.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q4" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q4" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q4" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q4" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q4" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- Section B: Focus & Environment -->
+
+            <div class="mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-blue-700 mb-4">B. Focus & Environment</h2>
+
+                <ul class="space-y-6">
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">5. I can remove distractions quickly (phone, tabs, clutter).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q5" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q5" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q5" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q5" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q5" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">6. I timebox blocks and stick to them.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q6" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q6" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q6" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q6" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q6" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">7. My workspace lighting, scent, and sound help me focus.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q7" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q7" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q7" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q7" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q7" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">8. I keep a simple capture system (journal/notes) so my mind stays clear.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q8" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q8" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q8" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q8" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q8" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- Section C: Skill × Challenge (Flow Fit) -->
+
+            <div class="mb-8 p-4 bg-green-50 rounded-lg border border-green-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-green-700 mb-4">C. Skill × Challenge (Flow Fit)</h2>
+
+                <ul class="space-y-6">
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">9. My most important tasks feel challenging but doable.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q9" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q9" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q9" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q9" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q9" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">10. I set one clear target before each work block.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q10" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q10" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q10" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q10" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q10" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">11. I get immediate feedback on progress (timer, checklist, metrics).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q11" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q11" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q11" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q11" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q11" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">12. I can adjust difficulty (stretch or simplify) to stay in the pocket.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q12" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q12" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q12" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q12" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q12" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- Section D: Motivation & Meaning -->
+
+            <div class="mb-8 p-4 bg-purple-50 rounded-lg border border-purple-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-purple-700 mb-4">D. Motivation & Meaning</h2>
+
+                <ul class="space-y-6">
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">13. I’d do this work even without external rewards (intrinsic drive).</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q13" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q13" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q13" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q13" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q13" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">14. I can state my why for this season in one sentence.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q14" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q14" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q14" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q14" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q14" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">15. I’m part of a community that reinforces my identity & goals.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q15" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q15" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q15" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q15" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q15" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    <li class="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 rounded-xl shadow-md border border-gray-100">
+
+                        <label class="block text-md sm:text-lg font-medium text-gray-800 mb-3 md:mb-0 md:w-3/4">16. I end most days with a small win + shutdown ritual.</label>
+
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start md:justify-end md:w-1/4">
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q16" value="1" class="form-radio" required> 1
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q16" value="2" class="form-radio"> 2
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q16" value="3" class="form-radio"> 3
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q16" value="4" class="form-radio"> 4
+
+                            </label>
+
+                            <label class="inline-flex items-center">
+
+                                <input type="radio" name="q16" value="5" class="form-radio"> 5
+
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div class="text-center mt-10">
+
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
+
+                    Calculate My Red Zone Readiness
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+        <div id="results" class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-inner hidden">
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 text-center">Your Red Zone Readiness:</h2>
+
+            <p class="text-xl sm:text-2xl font-bold text-center mb-6">Total Score: <span id="totalScore" class="text-red-600"></span></p>
+
+
+
+            <div id="scoreCategory" class="text-lg text-center mb-6"></div>
+
+            <div id="routingAdvice" class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200 text-gray-800"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+
+            event.preventDefault(); // Prevent default form submission
+
+
+
+            let totalScore = 0;
+
+            const questions = 16;
+
+            let allAnswered = true;
+
+
+
+            // Loop through each question to get its value
+
+            for (let i = 1; i <= questions; i++) {
+
+                const radios = document.getElementsByName('q' + i);
+
+                let questionAnswered = false;
+
+                for (const radio of radios) {
+
+                    if (radio.checked) {
+
+                        totalScore += parseInt(radio.value);
+
+                        questionAnswered = true;
+
+                        break;
+
+                    }
+
+                }
+
+                if (!questionAnswered) {
+
+                    allAnswered = false;
+
+                    // Optionally, highlight unanswered questions here
+
+                }
+
+            }
+
+
+
+            if (!allAnswered) {
+
+                // Instead of alert, display a message within the page
+
+                const resultsDiv = document.getElementById('results');
+
+                resultsDiv.classList.add('hidden'); // Hide previous results if any
+
+                const messageBox = document.createElement('div');
+
+                messageBox.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+
+                messageBox.innerHTML = `
+
+                    <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm w-full mx-4 border border-red-300">
+
+                        <h3 class="text-xl font-bold text-red-600 mb-4">Quiz Incomplete!</h3>
+
+                        <p class="text-gray-700 mb-6">Please answer all questions before submitting.</p>
+
+                        <button id="closeMessageBox" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Got It</button>
+
+                    </div>
+
+                `;
+
+                document.body.appendChild(messageBox);
+
+
+
+                document.getElementById('closeMessageBox').addEventListener('click', function() {
+
+                    messageBox.remove();
+
+                });
+
+                return; // Stop execution if not all questions are answered
+
+            }
+
+
+
+            // Display results section
+
+            const resultsDiv = document.getElementById('results');
+
+            resultsDiv.classList.remove('hidden');
+
+
+
+            document.getElementById('totalScore').textContent = totalScore;
+
+
+
+            let categoryText = "";
+
+            let routingAdviceText = "";
+
+
+
+            if (totalScore >= 16 && totalScore <= 35) {
+
+                categoryText = '<span class="font-bold text-red-500">Dormant Ember</span> → Start with Antidote Reset (kill friction, tiny wins).';
+
+                routingAdviceText = `
+
+                    <h3 class="font-semibold text-lg mb-2">Quick Next Moves:</h3>
+
+                    <p class="mb-1"><span class="font-bold">Low Energy</span> → F.L.O.W. breath + calming scent + earlier shutdown.</p>
+
+                    <p class="mb-1"><span class="font-bold">Scattered Focus</span> → Nightclockers lighting + lo‑fi + 50/10 timer.</p>
+
+                    <p class="mb-1"><span class="font-bold">Plateaued Skill</span> → Apex 3‑Block Sprint + progressive challenge.</p>
+
+                    <p class="mb-1"><span class="font-bold">Low Meaning</span> → Re‑write WHY (Journal, page 1) + share in community.</p>
+
+                `;
+
+            } else if (totalScore >= 36 && totalScore <= 50) {
+
+                categoryText = '<span class="font-bold text-orange-500">Spark Seeker</span> → Build a single daily block + sensory cues.';
+
+                routingAdviceText = `
+
+                    <h3 class="font-semibold text-lg mb-2">Quick Next Moves:</h3>
+
+                    <p class="mb-1"><span class="font-bold">Low Energy</span> → F.L.O.W. breath + calming scent + earlier shutdown.</p>
+
+                    <p class="mb-1"><span class="font-bold">Scattered Focus</span> → Nightclockers lighting + lo‑fi + 50/10 timer.</p>
+
+                    <p class="mb-1"><span class="font-bold">Plateaued Skill</span> → Apex 3‑Block Sprint + progressive challenge.</p>
+
+                    <p class="mb-1"><span class="font-bold">Low Meaning</span> → Re‑write WHY (Journal, page 1) + share in community.</p>
+
+                `;
+
+            } else if (totalScore >= 51 && totalScore <= 65) {
+
+                categoryText = '<span class="font-bold text-yellow-600">Heat Builder</span> → Run 2-3 stacked blocks; start public scorekeeping.';
+
+                routingAdviceText = `
+
+                    <h3 class="font-semibold text-lg mb-2">Quick Next Moves:</h3>
+
+                    <p class="mb-1"><span class="font-bold">Low Energy</span> → F.L.O.W. breath + calming scent + earlier shutdown.</p>
+
+                    <p class="mb-1"><span class="font-bold">Scattered Focus</span> → Nightclockers lighting + lo‑fi + 50/10 timer.</p>
+
+                    <p class="mb-1"><span class="font-bold">Plateaued Skill</span> → Apex 3‑Block Sprint + progressive challenge.</p>
+
+                    <p class="mb-1"><span class="font-bold">Low Meaning</span> → Re‑write WHY (Journal, page 1) + share in community.</p>
+
+                `;
+
+            } else if (totalScore >= 66 && totalScore <= 80) {
+
+                categoryText = '<span class="font-bold text-green-600">Apex Run</span> → Protect deep work; mentor others; experiment with harder challenges.';
+
+                routingAdviceText = `
+
+                    <h3 class="font-semibold text-lg mb-2">Quick Next Moves:</h3>
+
+                    <p class="mb-1"><span class="font-bold">Low Energy</span> → F.L.O.W. breath + calming scent + earlier shutdown.</p>
+
+                    <p class="mb-1"><span class="font-bold">Scattered Focus</span> → Nightclockers lighting + lo‑fi + 50/10 timer.</p>
+
+                    <p class="mb-1"><span class="font-bold">Plateaued Skill</span> → Apex 3‑Block Sprint + progressive challenge.</p>
+
+                    <p class="mb-1"><span class="font-bold">Low Meaning</span> → Re‑write WHY (Journal, page 1) + share in community.</p>
+
+                `;
+
+            } else {
+
+                categoryText = "Please ensure all questions are answered with valid scores (1-5).";
+
+                routingAdviceText = "";
+
+            }
+
+
+
+            document.getElementById('scoreCategory').innerHTML = categoryText;
+
+            document.getElementById('routingAdvice').innerHTML = routingAdviceText;
+
+
+
+            // Scroll to results
+
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

@@ -1,1 +1,1064 @@
-<html><body><h1>Coming soon</h1><p>This page is under construction.</p></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weekly Red Zone Recap</title>
+
+    <!-- Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        /* Custom styles for Inter font and general body */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+
+            -moz-osx-font-smoothing: grayscale;
+
+            background-color: #f8fafc; /* Light gray background */
+
+            color: #334155; /* Dark gray text */
+
+        }
+
+        /* Custom styling for number input arrows */
+
+        input[type='number']::-webkit-inner-spin-button,
+
+        input[type='number']::-webkit-outer-spin-button {
+
+            -webkit-appearance: none;
+
+            margin: 0;
+
+        }
+
+        input[type='number'] {
+
+            -moz-appearance: textfield;
+
+        }
+
+        /* Focus styles for input fields, textareas, and selects */
+
+        input:focus, textarea:focus, select:focus {
+
+            outline: none;
+
+            border-color: #ef4444; /* red-500 */
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); /* red-500 with opacity */
+
+        }
+
+
+
+        /* Styling for checkboxes */
+
+        input[type="checkbox"] {
+
+            -webkit-appearance: none;
+
+            -moz-appearance: none;
+
+            appearance: none;
+
+            width: 1.25rem; /* 20px */
+
+            height: 1.25rem; /* 20px */
+
+            border: 2px solid #94a3b8; /* Border color */
+
+            border-radius: 0.375rem; /* rounded-md */
+
+            cursor: pointer;
+
+            display: inline-block;
+
+            vertical-align: middle;
+
+            position: relative;
+
+            transition: all 0.2s ease-in-out;
+
+        }
+
+
+
+        input[type="checkbox"]:checked {
+
+            background-color: #ef4444; /* red-500 */
+
+            border-color: #ef4444;
+
+        }
+
+
+
+        input[type="checkbox"]:checked::after {
+
+            content: '\u2713'; /* Unicode checkmark */
+
+            font-size: 0.875rem; /* text-sm */
+
+            color: #fff;
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+        }
+
+
+
+        input[type="checkbox"]:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Focus ring */
+
+        }
+
+
+
+        /* Animation for sections on hover */
+
+        .animated-section {
+
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+        }
+
+        .animated-section:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+        }
+
+    </style>
+
+<style id="rec-resource-fixes">
+html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}
+.rec-return{background:#09090b;color:#fafafa;padding:13px max(16px,calc((100vw - 1000px)/2));display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;font:600 13px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;border-bottom:2px solid #fe0101}
+.rec-return a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rec-return span{color:#ccc;letter-spacing:.08em}
+.rec-save-note{padding:10px 14px;margin:12px auto;max-width:900px;background:#13131a;color:#f2f2f2;border-left:4px solid #fe0101;border-radius:6px;font:14px/1.5 system-ui}
+:focus-visible{outline:3px solid #39ff14!important;outline-offset:3px!important}
+@media(max-width:550px){.rec-return span{font-size:10px}input,select,textarea,button{max-width:100%}}
+</style></head>
+
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
+<div class="rec-return" role="navigation" aria-label="REC OS"><a href="../../index.html#resources">← Back to REC OS Resources</a><span>RED eYE CLIQUE · RED ZONE OS</span></div>
+
+
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-5xl border border-gray-200">
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-red-600 mb-6 text-center">Weekly Red Zone Recap</h1>
+
+        <p class="text-lg text-gray-700 mb-8 text-center">
+
+            Take 10–15 minutes once a week to review your progress and tune your flow.
+
+        </p>
+
+
+
+        <form id="weeklyRecapForm" class="space-y-10">
+
+
+
+            <!-- Section 1: Stats -->
+
+            <div class="animated-section bg-red-50 p-6 rounded-lg border border-red-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-red-700 mb-4">1) Stats</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div>
+
+                        <label for="blocksCompleted" class="block text-sm font-medium text-gray-700 mb-1">Blocks completed:</label>
+
+                        <input type="number" id="blocksCompleted" name="blocksCompleted" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="avgFlow" class="block text-sm font-medium text-gray-700 mb-1">Avg Flow (0–10):</label>
+
+                        <input type="number" id="avgFlow" name="avgFlow" min="0" max="10" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="highestFlowDay" class="block text-sm font-medium text-gray-700 mb-1">Highest Flow day:</label>
+
+                        <input type="text" id="highestFlowDay" name="highestFlowDay" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Tuesday" required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="journalStreaks" class="block text-sm font-medium text-gray-700 mb-1">Streaks: Journal (days)</label>
+
+                        <input type="number" id="journalStreaks" name="journalStreaks" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required>
+
+                    </div>
+
+                    <div class="lg:col-span-1">
+
+                        <label for="shutdownStreaks" class="block text-sm font-medium text-gray-700 mb-1">Streaks: Shutdown (days)</label>
+
+                        <input type="number" id="shutdownStreaks" name="shutdownStreaks" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 2: Wins -->
+
+            <div class="animated-section bg-blue-50 p-6 rounded-lg border border-blue-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-blue-700 mb-4">2) Wins</h2>
+
+                <div class="space-y-4">
+
+                    <div>
+
+                        <label for="biggestMoveForward" class="block text-sm font-medium text-gray-700 mb-1">Biggest move forward:</label>
+
+                        <textarea id="biggestMoveForward" name="biggestMoveForward" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Completed the first full draft of my novel." required></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="whereISurprisedMyself" class="block text-sm font-medium text-gray-700 mb-1">Where I surprised myself:</label>
+
+                        <textarea id="whereISurprisedMyself" name="whereISurprisedMyself" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Managed to focus despite interruptions from family." required></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 3: Friction Log -->
+
+            <div class="animated-section bg-green-50 p-6 rounded-lg border border-green-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-green-700 mb-4">3) Friction Log</h2>
+
+                <div class="space-y-4">
+
+                    <div>
+
+                        <label for="topBlockers" class="block text-sm font-medium text-gray-700 mb-1">Top 2 blockers (distraction, energy, clarity):</label>
+
+                        <textarea id="topBlockers" name="topBlockers" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., 1. Phone notifications. 2. Mid-afternoon energy slump." required></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="myFix" class="block text-sm font-medium text-gray-700 mb-1">My fix (If‑Then):</label>
+
+                        <textarea id="myFix" name="myFix" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., If phone pulls me → Airplane mode for block. If energy dips → 5 min walk + cold water." required></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 4: Tune the Gate -->
+
+            <div class="animated-section bg-purple-50 p-6 rounded-lg border border-purple-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-purple-700 mb-4">4) Tune the Gate</h2>
+
+                <div class="space-y-6">
+
+                    <!-- Keep -->
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Keep: What worked well?</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <div>
+
+                            <label for="keepSound" class="block text-sm font-medium text-gray-700 mb-1">Sound:</label>
+
+                            <select id="keepSound" name="keepSound" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Lo-fi beats (no lyrics)">Lo-fi beats (no lyrics)</option>
+
+                                <option value="Brown noise">Brown noise</option>
+
+                                <option value="60-70 BPM instrumental">60-70 BPM instrumental</option>
+
+                                <option value="Nature loop">Nature loop</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="keepLight" class="block text-sm font-medium text-gray-700 mb-1">Light:</label>
+
+                            <select id="keepLight" name="keepLight" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Soft warm desk lamp">Soft warm desk lamp</option>
+
+                                <option value="Red/amber bias-light behind monitor">Red/amber bias-light behind monitor</option>
+
+                                <option value="Candle-safe zone">Candle-safe zone</option>
+
+                                <option value="Blue-blockers at night">Blue-blockers at night</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="keepScent" class="block text-sm font-medium text-gray-700 mb-1">Scent:</label>
+
+                            <select id="keepScent" name="keepScent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Red Zone blend">Red Zone blend (peppermint/rosemary/lemon + ginger/frankincense)</option>
+
+                                <option value="Creative alt: orange + cardamom + patchouli">Creative alt: orange + cardamom + patchouli (2-1-1)</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="keepBreath" class="block text-sm font-medium text-gray-700 mb-1">Breath:</label>
+
+                            <select id="keepBreath" name="keepBreath" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="4-7-8 (x3 cycles)">4-7-8 (×3 cycles)</option>
+
+                                <option value="Box 4-4-4-4 (x5)">Box 4-4-4-4 (×5)</option>
+
+                                <option value="30-sec nasal cadence at ~6 breaths/min">30-sec nasal cadence at ~6 breaths/min</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="keepPosture" class="block text-sm font-medium text-gray-700 mb-1">Posture & Micro-moves:</label>
+
+                            <select id="keepPosture" name="keepPosture" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Feet flat + long spine">Feet flat + long spine</option>
+
+                                <option value="10 slow shoulder circles">10 slow shoulder circles</option>
+
+                                <option value="Wrist/eye 20-20-20 reset">Wrist/eye 20-20-20 reset</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="keepSelfTalk" class="block text-sm font-medium text-gray-700 mb-1">Self-Talk (1 line):</label>
+
+                            <select id="keepSelfTalk" name="keepSelfTalk" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="One target. One block.">“One target. One block.”</option>
+
+                                <option value="Make it obvious, make it easy.">“Make it obvious, make it easy.”</option>
+
+                                <option value="Finish lines aren’t moving. I am.">“Finish lines aren’t moving. I am.”</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Swap -->
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2 mt-6">Swap: What needs changing?</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <div>
+
+                            <label for="swapSound" class="block text-sm font-medium text-gray-700 mb-1">Sound:</label>
+
+                            <select id="swapSound" name="swapSound" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Lo-fi beats (no lyrics)">Lo-fi beats (no lyrics)</option>
+
+                                <option value="Brown noise">Brown noise</option>
+
+                                <option value="60-70 BPM instrumental">60-70 BPM instrumental</option>
+
+                                <option value="Nature loop">Nature loop</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="swapLight" class="block text-sm font-medium text-gray-700 mb-1">Light:</label>
+
+                            <select id="swapLight" name="swapLight" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Soft warm desk lamp">Soft warm desk lamp</option>
+
+                                <option value="Red/amber bias-light behind monitor">Red/amber bias-light behind monitor</option>
+
+                                <option value="Candle-safe zone">Candle-safe zone</option>
+
+                                <option value="Blue-blockers at night">Blue-blockers at night</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="swapScent" class="block text-sm font-medium text-gray-700 mb-1">Scent:</label>
+
+                            <select id="swapScent" name="swapScent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Red Zone blend">Red Zone blend (peppermint/rosemary/lemon + ginger/frankincense)</option>
+
+                                <option value="Creative alt: orange + cardamom + patchouli">Creative alt: orange + cardamom + patchouli (2-1-1)</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="swapBreath" class="block text-sm font-medium text-gray-700 mb-1">Breath:</label>
+
+                            <select id="swapBreath" name="swapBreath" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="4-7-8 (x3 cycles)">4-7-8 (×3 cycles)</option>
+
+                                <option value="Box 4-4-4-4 (x5)">Box 4-4-4-4 (×5)</option>
+
+                                <option value="30-sec nasal cadence at ~6 breaths/min">30-sec nasal cadence at ~6 breaths/min</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="swapPosture" class="block text-sm font-medium text-gray-700 mb-1">Posture & Micro-moves:</label>
+
+                            <select id="swapPosture" name="swapPosture" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="Feet flat + long spine">Feet flat + long spine</option>
+
+                                <option value="10 slow shoulder circles">10 slow shoulder circles</option>
+
+                                <option value="Wrist/eye 20-20-20 reset">Wrist/eye 20-20-20 reset</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="swapSelfTalk" class="block text-sm font-medium text-gray-700 mb-1">Self-Talk (1 line):</label>
+
+                            <select id="swapSelfTalk" name="swapSelfTalk" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800">
+
+                                <option value="">Select an option</option>
+
+                                <option value="One target. One block.">“One target. One block.”</option>
+
+                                <option value="Make it obvious, make it easy.">“Make it obvious, make it easy.”</option>
+
+                                <option value="Finish lines aren’t moving. I am.">“Finish lines aren’t moving. I am.”</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Try -->
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2 mt-6">Try: New cue or difficulty setting?</h3>
+
+                    <input type="text" id="tryNewCue" name="tryNewCue" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Try a new playlist with classical music, or experiment with a shorter work block (40/10).">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 5: Meaning & Direction -->
+
+            <div class="animated-section bg-yellow-50 p-6 rounded-lg border border-yellow-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-yellow-700 mb-4">5) Meaning & Direction</h2>
+
+                <div class="space-y-4">
+
+                    <div>
+
+                        <label for="thisWeekWhy" class="block text-sm font-medium text-gray-700 mb-1">This week, my why looked like:</label>
+
+                        <textarea id="thisWeekWhy" name="thisWeekWhy" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Contributing to open-source project by fixing bugs and helping new contributors." required></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="nextWeekTheme" class="block text-sm font-medium text-gray-700 mb-1">Next week’s theme (one word):</label>
+
+                        <input type="text" id="nextWeekTheme" name="nextWeekTheme" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., Deep-Dive" required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 6: Next Week Sprint Plan -->
+
+            <div class="animated-section bg-teal-50 p-6 rounded-lg border border-teal-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-teal-700 mb-4">6) Next Week Sprint Plan</h2>
+
+                <p class="text-sm text-gray-600 mb-3">3 outcomes that would make next week a win:</p>
+
+                <div class="space-y-4">
+
+                    <div>
+
+                        <label for="outcome1" class="block text-sm font-medium text-gray-700 mb-1">1.</label>
+
+                        <textarea id="outcome1" name="outcome1" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="outcome2" class="block text-sm font-medium text-gray-700 mb-1">2.</label>
+
+                        <textarea id="outcome2" name="outcome2" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="outcome3" class="block text-sm font-medium text-gray-700 mb-1">3.</label>
+
+                        <textarea id="outcome3" name="outcome3" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" required></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Section 7: Community Touch -->
+
+            <div class="animated-section bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
+
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-700 mb-4">7) Community Touch</h2>
+
+                <div class="space-y-4">
+
+                    <div class="flex items-center">
+
+                        <input type="checkbox" id="shareInCommunity" name="shareInCommunity" class="mr-2">
+
+                        <label for="shareInCommunity" class="text-gray-800 text-lg">Share 1 win + 1 lesson in the Clique.</label>
+
+                    </div>
+
+                    <div>
+
+                        <label for="communityTag" class="block text-sm font-medium text-gray-700 mb-1">Tag someone who helped (optional):</label>
+
+                        <input type="text" id="communityTag" name="communityTag" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800" placeholder="e.g., @JaneDoe">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="text-center mt-10">
+
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
+
+                    Submit Weekly Recap
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+        <!-- Message Box for feedback -->
+
+        <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm w-full mx-4 border border-red-300">
+
+                <h3 id="messageTitle" class="text-xl font-bold text-red-600 mb-4"></h3>
+
+                <p id="messageContent" class="text-gray-700 mb-6"></p>
+
+                <button id="closeMessageBox" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Got It</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // Options for "Tune the Gate" dropdowns
+
+        const flowGateOptions = {
+
+            sound: [
+
+                "Lo-fi beats (no lyrics)",
+
+                "Brown noise",
+
+                "60-70 BPM instrumental",
+
+                "Nature loop"
+
+            ],
+
+            light: [
+
+                "Soft warm desk lamp",
+
+                "Red/amber bias-light behind monitor",
+
+                "Candle-safe zone",
+
+                "Blue-blockers at night"
+
+            ],
+
+            scent: [
+
+                "Red Zone blend (peppermint/rosemary/lemon + ginger/frankincense)",
+
+                "Creative alt: orange + cardamom + patchouli (2-1-1)"
+
+            ],
+
+            breath: [
+
+                "4-7-8 (×3 cycles)",
+
+                "Box 4-4-4-4 (×5)",
+
+                "30-sec nasal cadence at ~6 breaths/min"
+
+            ],
+
+            posture: [
+
+                "Feet flat + long spine",
+
+                "10 slow shoulder circles",
+
+                "Wrist/eye 20-20-20 reset"
+
+            ],
+
+            selfTalk: [
+
+                "“One target. One block.”",
+
+                "“Make it obvious, make it easy.”",
+
+                "“Finish lines aren’t moving. I am.”"
+
+            ]
+
+        };
+
+
+
+        // Function to populate dropdowns
+
+        function populateDropdowns() {
+
+            for (const category in flowGateOptions) {
+
+                const keepSelect = document.getElementById(`keep${capitalizeFirstLetter(category)}`);
+
+                const swapSelect = document.getElementById(`swap${capitalizeFirstLetter(category)}`);
+
+
+
+                if (keepSelect) {
+
+                    flowGateOptions[category].forEach(option => {
+
+                        const opt = document.createElement('option');
+
+                        opt.value = option;
+
+                        opt.textContent = option;
+
+                        keepSelect.appendChild(opt);
+
+                    });
+
+                }
+
+                if (swapSelect) {
+
+                    flowGateOptions[category].forEach(option => {
+
+                        const opt = document.createElement('option');
+
+                        opt.value = option;
+
+                        opt.textContent = option;
+
+                        swapSelect.appendChild(opt);
+
+                    });
+
+                }
+
+            }
+
+        }
+
+
+
+        function capitalizeFirstLetter(string) {
+
+            return string.charAt(0).toUpperCase() + string.slice(1);
+
+        }
+
+
+
+        // Call populateDropdowns when the DOM is loaded
+
+        document.addEventListener('DOMContentLoaded', populateDropdowns);
+
+
+
+
+
+        // Function to show custom message box (reused from daily journal)
+
+        function showMessageBox(title, content) {
+
+            const messageBox = document.getElementById('messageBox');
+
+            document.getElementById('messageTitle').textContent = title;
+
+            document.getElementById('messageContent').textContent = content;
+
+            messageBox.classList.remove('hidden');
+
+        }
+
+
+
+        // Function to close custom message box
+
+        document.getElementById('closeMessageBox').addEventListener('click', function() {
+
+            document.getElementById('messageBox').classList.add('hidden');
+
+        });
+
+
+
+        document.getElementById('weeklyRecapForm').addEventListener('submit', function(event) {
+
+            event.preventDefault(); // Prevent default form submission
+
+
+
+            // Validate all required fields
+
+            const requiredInputs = this.querySelectorAll('[required]');
+
+            let allRequiredFilled = true;
+
+            for (const input of requiredInputs) {
+
+                if (!input.value) {
+
+                    allRequiredFilled = false;
+
+                    break;
+
+                }
+
+            }
+
+
+
+            if (!allRequiredFilled) {
+
+                showMessageBox("Input Missing!", "Please fill out all required fields before submitting.");
+
+                return; // Stop the function if not all required fields are filled
+
+            }
+
+
+
+            // Collect all form data
+
+            const formData = {
+
+                stats: {
+
+                    blocksCompleted: parseInt(document.getElementById('blocksCompleted').value),
+
+                    avgFlow: parseFloat(document.getElementById('avgFlow').value),
+
+                    highestFlowDay: document.getElementById('highestFlowDay').value,
+
+                    journalStreaks: parseInt(document.getElementById('journalStreaks').value),
+
+                    shutdownStreaks: parseInt(document.getElementById('shutdownStreaks').value)
+
+                },
+
+                wins: {
+
+                    biggestMoveForward: document.getElementById('biggestMoveForward').value,
+
+                    whereISurprisedMyself: document.getElementById('whereISurprisedMyself').value
+
+                },
+
+                frictionLog: {
+
+                    topBlockers: document.getElementById('topBlockers').value,
+
+                    myFix: document.getElementById('myFix').value
+
+                },
+
+                tuneTheGate: {
+
+                    keep: {
+
+                        sound: document.getElementById('keepSound').value,
+
+                        light: document.getElementById('keepLight').value,
+
+                        scent: document.getElementById('keepScent').value,
+
+                        breath: document.getElementById('keepBreath').value,
+
+                        posture: document.getElementById('keepPosture').value,
+
+                        selfTalk: document.getElementById('keepSelfTalk').value
+
+                    },
+
+                    swap: {
+
+                        sound: document.getElementById('swapSound').value,
+
+                        light: document.getElementById('swapLight').value,
+
+                        scent: document.getElementById('swapScent').value,
+
+                        breath: document.getElementById('swapBreath').value,
+
+                        posture: document.getElementById('swapPosture').value,
+
+                        selfTalk: document.getElementById('swapSelfTalk').value
+
+                    },
+
+                    tryNewCue: document.getElementById('tryNewCue').value
+
+                },
+
+                meaningDirection: {
+
+                    thisWeekWhy: document.getElementById('thisWeekWhy').value,
+
+                    nextWeekTheme: document.getElementById('nextWeekTheme').value
+
+                },
+
+                nextWeekSprintPlan: [
+
+                    document.getElementById('outcome1').value,
+
+                    document.getElementById('outcome2').value,
+
+                    document.getElementById('outcome3').value
+
+                ],
+
+                communityTouch: {
+
+                    shareInCommunity: document.getElementById('shareInCommunity').checked,
+
+                    communityTag: document.getElementById('communityTag').value
+
+                }
+
+            };
+
+
+
+            // Log the collected data to the console for now
+
+            console.log("Weekly Recap Data:", formData);
+
+
+
+            // In a real application, you would send this 'formData' to a backend server or local storage.
+
+            // Example: saveDataToFirestore(formData);
+
+
+
+            showMessageBox("Recap Submitted!", "Your weekly recap has been saved successfully. Check the console for the data!");
+
+
+
+            // Optionally, reset the form after submission
+
+            // this.reset();
+
+        });
+
+    </script>
+
+<script id="rec-save-engine">
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    const form=document.getElementById("weeklyRecapForm");
+    if(!form)return;
+    const key="rec.os.weekly.v2";
+    const all=Array.from(form.querySelectorAll('input,textarea,select')).filter(el=>el.name||el.id);
+    const fieldKey=(el)=>el.id||el.name;
+    const note=document.createElement('p'); note.className='rec-save-note';note.setAttribute('role','status');note.textContent='Your entries save in this browser as you type. They are not synced to other devices.';
+    form.parentNode.insertBefore(note,form);
+    const restore=()=>{
+      try{
+        const obj=JSON.parse(localStorage.getItem(key)||'{}');
+        for(const el of all){
+          const val=obj[fieldKey(el)];if(val===undefined)continue;
+          if(el.type==='checkbox'||el.type==='radio')el.checked=Array.isArray(val)?val.includes(el.value):val===true||val===el.value;
+          else el.value=val;
+        }
+      }catch(e){note.textContent='Browser storage is unavailable. Use a private copy or print to retain your entry.'}
+    };
+    let hold;
+    const save=()=>{
+      const obj={};
+      for(const el of all){
+        const id=fieldKey(el);
+        if(el.type==='checkbox'||el.type==='radio'){
+          if(!obj[id])obj[id]=[];
+          if(el.checked)obj[id].push(el.value);
+        }else obj[id]=el.value;
+      }
+      try{localStorage.setItem(key,JSON.stringify(obj));note.textContent='Saved on this device · '+new Date().toLocaleTimeString(); }
+      catch(e){note.textContent='Could not save to this browser. Copy your answers before leaving.'}
+    };
+    restore();
+    form.addEventListener('input',()=>{clearTimeout(hold);hold=setTimeout(save,400)});
+    form.addEventListener('change',save);
+    form.addEventListener('submit',save,true);
+  });
+})();
+</script></body>
+
+</html>
+

@@ -109,7 +109,23 @@
       font-size:12px;
     }
 
-  </style>
+  
+/* REC OS resource and mobile navigation correction */
+@media(max-width:899px){
+ .nav-inner{height:auto;min-height:60px;flex-wrap:wrap;gap:6px;padding-top:10px;padding-bottom:8px}
+ .brand{width:100%}
+ .nav-links{display:flex!important;margin:0;width:100%;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:4px 0 9px;-webkit-overflow-scrolling:touch}
+ .nav-links a{white-space:nowrap;flex-shrink:0;padding:9px 12px;border:1px solid rgba(255,255,255,.20);border-radius:10px;background:#16161c;font-size:12px}
+}
+@media(min-width:900px) and (max-width:1180px){.nav-links{gap:9px}.nav-links a{font-size:11px}}
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.resource-card a{display:block;min-height:44px;padding:8px 0;color:#fff;text-decoration:underline;text-decoration-color:#fe0101;text-underline-offset:5px}
+.resource-card a:focus-visible,.nav-links a:focus-visible{outline:3px solid #39ff14;outline-offset:3px}
+.resource-card{min-width:0}
+section[id]{scroll-margin-top:130px}
+@media(max-width:470px){.resources-grid{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
   <header class="nav">
@@ -261,12 +277,12 @@
 <section id="resources" class="section">
   <div class="container">
     <h2>Resources</h2>
-    <p class="muted">Timers, journals, templates, and quick reads.</p>
+    <p class="muted">Open each tool on its own page. Plans and journal entries save in your current browser.</p>
     <div class="spacer"></div>
     <div id="resourcesGrid" class="resources-grid"></div>
   </div>
 </section>
-<section  class="section">
+<section id="roadmap" class="section">
       <div class="container">
         <h2>Intelligent Product Roadmap</h2>
         <p class="muted">This roadmap is directly informed by user insights and feedback from the Activation and Immersion phases.</p>
@@ -292,7 +308,7 @@
           <h2>Red Zone Readiness Quiz</h2>
           <p class="lead" style="margin-left:auto;margin-right:auto">How ready are you to hit the Red Zone? Take this quiz to assess your energy, focus, flow‑fit, and motivation.</p>
           <div style="margin-top:20px">
-            <a class="btn" href="assets/docs/red-zone-readiness-quiz.html" target="_blank">Take the Quiz →</a>
+            <a class="btn" href="./assets/docs/red-zone-readiness-quiz.html" target="_blank" rel="noopener">Take the Quiz →</a>
           </div>
         </div>
       </div>
@@ -451,12 +467,12 @@
     
     // Resources definition
     const RESOURCES = [
-      { title:"3-Minute Ramp Timer", href:"assets/docs/red-zone-ramp-timer.html", note:"Countdown + chime" },
-      { title:"Weekly Red Zone Checkup", href:"assets/docs/weekly-red-zone-recap.html", note:"Reflect & plan" },
-      { title:"Meal Plan Template", href:"assets/docs/meal-prep-template.html", note:"Simple, printable" },
-      { title:"Health Manual (Quick Guide)", href:"assets/docs/health-manual.html", note:"Foundations" },
-      { title:"Readiness Quiz", href:"assets/docs/red-zone-readiness-quiz.html", note:"16 questions" },
-      { title:"Audio: Unpacking Red eYe Clique", href:"assets/audio/unpacking-red-eye-clique.mp3", note:"MP3" }
+      {title:"3-Minute Ramp Timer",href:"./assets/docs/red-zone-ramp-timer.html",note:"3-minute guided activation timer with start, stop and reset"},
+      {title:"Daily Red Zone Journal",href:"./assets/docs/daily-red-zone-journal.html",note:"Record energy, focus blocks, wins and recovery"},
+      {title:"Weekly Red Zone Checkup",href:"./assets/docs/weekly-red-zone-recap.html",note:"Review stats, friction and next week’s sprint"},
+      {title:"Meal Plan Template",href:"./assets/docs/meal-prep-template.html",note:"7-day editable plan · saves locally · printable"},
+      {title:"Health Manual",href:"./assets/docs/health-manual.html",note:"Fuel, Form, Flow and Fortify"},
+      {title:"Red Zone Readiness Quiz",href:"./assets/docs/red-zone-readiness-quiz.html",note:"16 questions with results and next steps"}
     ];
 
     // Render Resources
@@ -474,7 +490,7 @@
     // Helpers
     const qs = (sel, root=document) => root.querySelector(sel);
     const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-    const todayKey = () => new Date().toISOString().split('T')[0];
+    const todayKey = () => { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
 
     // Modal support
     function showModal(title, message) {

@@ -1,1 +1,520 @@
-<html><body><h1>Coming soon</h1><p>This page is under construction.</p></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3-Minute Red Zone Ramp Timer</title>
+
+    <!-- Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        /* Custom styles for Inter font and general body */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+
+            -moz-osx-font-smoothing: grayscale;
+
+            background-color: #f8fafc; /* Light gray background */
+
+            color: #334155; /* Dark gray text */
+
+        }
+
+
+
+        /* Keyframe animation for pulse effect on timer */
+
+        @keyframes pulse {
+
+            0%, 100% {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+            50% {
+
+                transform: scale(1.03);
+
+                opacity: 0.95;
+
+            }
+
+        }
+
+
+
+        .animate-pulse-on-finish {
+
+            animation: pulse 1s ease-in-out infinite;
+
+        }
+
+
+
+        /* Focus styles for buttons and selects */
+
+        button:focus, select:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* red-500 with opacity */
+
+        }
+
+    </style>
+
+<style id="rec-resource-fixes">
+html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}
+.rec-return{background:#09090b;color:#fafafa;padding:13px max(16px,calc((100vw - 1000px)/2));display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;font:600 13px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;border-bottom:2px solid #fe0101}
+.rec-return a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rec-return span{color:#ccc;letter-spacing:.08em}
+.rec-save-note{padding:10px 14px;margin:12px auto;max-width:900px;background:#13131a;color:#f2f2f2;border-left:4px solid #fe0101;border-radius:6px;font:14px/1.5 system-ui}
+:focus-visible{outline:3px solid #39ff14!important;outline-offset:3px!important}
+@media(max-width:550px){.rec-return span{font-size:10px}input,select,textarea,button{max-width:100%}}
+</style></head>
+
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
+<div class="rec-return" role="navigation" aria-label="REC OS"><a href="../../index.html#resources">← Back to REC OS Resources</a><span>RED eYE CLIQUE · RED ZONE OS</span></div>
+
+
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-2xl border border-gray-200 text-center">
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-red-600 mb-6">3-Minute Ramp Timer</h1>
+
+        <p class="text-lg text-gray-700 mb-8">
+
+            Use this timer to quickly ramp up before your hard blocks.
+
+        </p>
+
+
+
+        <!-- Difficulty Selection -->
+
+        <div class="mb-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+
+            <label for="difficultySelect" class="text-lg font-semibold text-gray-700">Choose Difficulty:</label>
+
+            <select id="difficultySelect" class="rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-red-500 focus:border-red-500">
+
+                <option value="Normal">Normal</option>
+
+                <option value="Easy">Easy</option>
+
+                <option value="Hard">Hard</option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="mb-10 p-6 bg-red-50 rounded-xl border border-red-200 shadow-md">
+
+            <div id="timerDisplay" class="text-6xl sm:text-7xl font-mono font-bold text-red-700 mb-4 transition-colors duration-500 ease-in-out">
+
+                03:00
+
+            </div>
+
+            <p id="instructionText" class="text-xl sm:text-2xl text-gray-800 font-semibold min-h-[3rem] flex items-center justify-center transition-colors duration-500 ease-in-out">
+
+                Get ready to ramp up!
+
+            </p>
+
+        </div>
+
+
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+            <button id="startButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+
+                Start Ramp
+
+            </button>
+
+            <button id="stopButton" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" disabled>
+
+                Stop Ramp
+
+            </button>
+
+            <button id="resetButton" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" disabled>
+
+                Reset Timer
+
+            </button>
+
+        </div>
+
+
+
+        <!-- Custom Message Box for notifications -->
+
+        <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm w-full mx-4 border border-red-300">
+
+                <h3 id="messageTitle" class="text-xl font-bold text-red-600 mb-4"></h3>
+
+                <p id="messageContent" class="text-gray-700 mb-6"></p>
+
+                <button id="closeMessageBox" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Got It</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const totalDuration = 180; // 3 minutes in seconds
+
+        let remainingTime = totalDuration;
+
+        let timerInterval;
+
+        let isRunning = false;
+
+
+
+        const timerDisplay = document.getElementById('timerDisplay');
+
+        const instructionText = document.getElementById('instructionText');
+
+        const startButton = document.getElementById('startButton');
+
+        const stopButton = document.getElementById('stopButton'); // New stop button
+
+        const resetButton = document.getElementById('resetButton');
+
+        const difficultySelect = document.getElementById('difficultySelect'); // New difficulty select
+
+        const messageBox = document.getElementById('messageBox');
+
+        const messageTitle = document.getElementById('messageTitle');
+
+        const messageContent = document.getElementById('messageContent');
+
+        const closeMessageBoxButton = document.getElementById('closeMessageBox');
+
+
+
+        // Helper function to get instructions based on time and difficulty
+
+        function getInstructionForTime(time, difficulty) {
+
+            let prefix = "";
+
+            switch (difficulty) {
+
+                case 'Easy':
+
+                    prefix = "Easy Pace: ";
+
+                    break;
+
+                case 'Hard':
+
+                    prefix = "Hard Core: ";
+
+                    break;
+
+                case 'Normal':
+
+                default:
+
+                    prefix = "Focus Up: ";
+
+                    break;
+
+            }
+
+
+
+            if (time > 120) { // 3:00 to 2:01
+
+                return `${prefix}:00–:60 — sensory stack + choose difficulty (easy/normal/hard).`;
+
+            } else if (time > 60) { // 2:00 to 1:01
+
+                return `:60–:120 — write first 2 steps in the journal.`;
+
+            } else if (time > 0) { // 1:00 to 0:01
+
+                return `:120–:180 — start Step 1 immediately.`;
+
+            } else {
+
+                return "Time's up! Dive in!";
+
+            }
+
+        }
+
+
+
+        // Function to update the timer display and instructions
+
+        function updateDisplay() {
+
+            const minutes = Math.floor(remainingTime / 60);
+
+            const seconds = remainingTime % 60;
+
+            timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+
+
+            const currentDifficulty = difficultySelect.value;
+
+            instructionText.textContent = getInstructionForTime(remainingTime, currentDifficulty);
+
+
+
+            // Update colors based on time segments
+
+            if (remainingTime > 120) {
+
+                timerDisplay.classList.remove('text-blue-700', 'text-green-700');
+
+                timerDisplay.classList.add('text-red-700');
+
+                instructionText.classList.remove('text-blue-800', 'text-green-800');
+
+                instructionText.classList.add('text-gray-800');
+
+            } else if (remainingTime > 60) {
+
+                timerDisplay.classList.remove('text-red-700', 'text-green-700');
+
+                timerDisplay.classList.add('text-blue-700');
+
+                instructionText.classList.remove('text-gray-800', 'text-green-800');
+
+                instructionText.classList.add('text-blue-800');
+
+            } else if (remainingTime > 0) {
+
+                timerDisplay.classList.remove('text-red-700', 'text-blue-700');
+
+                timerDisplay.classList.add('text-green-700');
+
+                instructionText.classList.remove('text-gray-800', 'text-blue-800');
+
+                instructionText.classList.add('text-green-800');
+
+            } else { // Timer finished
+
+                timerDisplay.classList.remove('text-red-700', 'text-blue-700');
+
+                timerDisplay.classList.add('text-green-700');
+
+                instructionText.classList.remove('text-gray-800', 'text-blue-800');
+
+                instructionText.classList.add('text-green-800');
+
+                timerDisplay.classList.add('animate-pulse-on-finish'); // Add pulse animation
+
+                clearInterval(timerInterval);
+
+                isRunning = false;
+
+                startButton.disabled = true;
+
+                stopButton.disabled = true;
+
+                resetButton.disabled = false;
+
+                difficultySelect.disabled = false; // Enable difficulty select when finished
+
+                showMessageBox("Ramp Complete!", "Time to dive into your focused work block!");
+
+            }
+
+        }
+
+
+
+        // Function to start the timer
+
+        function startTimer() {
+
+            if (isRunning) return;
+
+            isRunning = true;
+
+            startButton.disabled = true;
+
+            stopButton.disabled = false; // Enable stop button
+
+            resetButton.disabled = false;
+
+            difficultySelect.disabled = true; // Disable difficulty select when running
+
+            timerDisplay.classList.remove('animate-pulse-on-finish');
+
+
+
+            timerInterval = setInterval(() => {
+
+                remainingTime--;
+
+                updateDisplay();
+
+                if (remainingTime <= 0) {
+
+                    clearInterval(timerInterval);
+
+                    isRunning = false;
+
+                }
+
+            }, 1000);
+
+        }
+
+
+
+        // Function to stop the timer
+
+        function stopTimer() {
+
+            clearInterval(timerInterval);
+
+            isRunning = false;
+
+            startButton.disabled = false;
+
+            stopButton.disabled = true;
+
+            resetButton.disabled = false;
+
+            difficultySelect.disabled = false; // Enable difficulty select when stopped
+
+            instructionText.textContent = `Ramp paused. Current: ${timerDisplay.textContent}`;
+
+            timerDisplay.classList.remove('animate-pulse-on-finish'); // Ensure no pulse when paused
+
+        }
+
+
+
+        // Function to reset the timer
+
+        function resetTimer() {
+
+            clearInterval(timerInterval);
+
+            isRunning = false;
+
+            remainingTime = totalDuration;
+
+            updateDisplay();
+
+            startButton.disabled = false;
+
+            stopButton.disabled = true; // Disable stop button on reset
+
+            resetButton.disabled = true;
+
+            difficultySelect.disabled = false; // Enable difficulty select on reset
+
+            timerDisplay.classList.remove('animate-pulse-on-finish');
+
+            timerDisplay.classList.remove('text-blue-700', 'text-green-700');
+
+            timerDisplay.classList.add('text-red-700');
+
+            instructionText.classList.remove('text-blue-800', 'text-green-800');
+
+            instructionText.classList.add('text-gray-800');
+
+            instructionText.textContent = "Get ready to ramp up!";
+
+        }
+
+
+
+        // Custom Message Box functions
+
+        function showMessageBox(title, content) {
+
+            messageTitle.textContent = title;
+
+            messageContent.textContent = content;
+
+            messageBox.classList.remove('hidden');
+
+        }
+
+
+
+        closeMessageBoxButton.addEventListener('click', () => {
+
+            messageBox.classList.add('hidden');
+
+        });
+
+
+
+        // Event Listeners
+
+        startButton.addEventListener('click', startTimer);
+
+        stopButton.addEventListener('click', stopTimer); // Event listener for stop button
+
+        resetButton.addEventListener('click', resetTimer);
+
+        difficultySelect.addEventListener('change', () => {
+
+            if (!isRunning) { // Only update instructions if timer is not running
+
+                instructionText.textContent = getInstructionForTime(remainingTime, difficultySelect.value);
+
+            }
+
+        });
+
+
+
+        // Initial display update when the page loads
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            updateDisplay();
+
+            resetButton.disabled = true; // Ensure reset button is disabled initially
+
+            stopButton.disabled = true; // Ensure stop button is disabled initially
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Red Zone Journal</title>
+
+    <!-- Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        /* Custom styles for Inter font and general body */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+
+            -moz-osx-font-smoothing: grayscale;
+
+            background-color: #f8fafc; /* Light gray background */
+
+            color: #334155; /* Dark gray text */
+
+        }
+
+        /* Custom styling for number input arrows */
+
+        input[type='number']::-webkit-inner-spin-button,
+
+        input[type='number']::-webkit-outer-spin-button {
+
+            -webkit-appearance: none;
+
+            margin: 0;
+
+        }
+
+        input[type='number'] {
+
+            -moz-appearance: textfield;
+
+        }
+
+        /* Focus styles for input fields */
+
+        input:focus, textarea:focus, select:focus {
+
+            outline: none;
+
+            border-color: #ef4444; /* red-500 */
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); /* red-500 with opacity */
+
+        }
+
+
+
+        /* Styling for checkboxes */
+
+        input[type="checkbox"] {
+
+            -webkit-appearance: none;
+
+            -moz-appearance: none;
+
+            appearance: none;
+
+            width: 1.25rem; /* 20px */
+
+            height: 1.25rem; /* 20px */
+
+            border: 2px solid #94a3b8; /* Border color */
+
+            border-radius: 0.375rem; /* rounded-md */
+
+            cursor: pointer;
+
+            display: inline-block;
+
+            vertical-align: middle;
+
+            position: relative;
+
+            transition: all 0.2s ease-in-out;
+
+        }
+
+
+
+        input[type="checkbox"]:checked {
+
+            background-color: #ef4444; /* red-500 */
+
+            border-color: #ef4444;
+
+        }
+
+
+
+        input[type="checkbox"]:checked::after {
+
+            content: '\u2713'; /* Unicode checkmark */
+
+            font-size: 0.875rem; /* text-sm */
+
+            color: #fff;
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+        }
+
+
+
+        input[type="checkbox"]:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Focus ring */
+
+        }
+
+    </style>
+
+<style id="rec-resource-fixes">
+html{scroll-behavior:smooth}body{min-width:0;overflow-x:hidden}
+.rec-return{background:#09090b;color:#fafafa;padding:13px max(16px,calc((100vw - 1000px)/2));display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;font:600 13px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;border-bottom:2px solid #fe0101}
+.rec-return a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rec-return span{color:#ccc;letter-spacing:.08em}
+.rec-save-note{padding:10px 14px;margin:12px auto;max-width:900px;background:#13131a;color:#f2f2f2;border-left:4px solid #fe0101;border-radius:6px;font:14px/1.5 system-ui}
+:focus-visible{outline:3px solid #39ff14!important;outline-offset:3px!important}
+@media(max-width:550px){.rec-return span{font-size:10px}input,select,textarea,button{max-width:100%}}
+</style></head>
+
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex items-center justify-center">
+<div class="rec-return" role="navigation" aria-label="REC OS"><a href="../../index.html#resources">← Back to REC OS Resources</a><span>RED eYE CLIQUE · RED ZONE OS</span></div>
+
+
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-4xl border border-gray-200">
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-red-600 mb-6 text-center">Daily Red Zone Journal</h1>
+
+        <p class="text-lg text-gray-700 mb-8 text-center">
+
+            Copy this page for each day. Keep it visible.
+
+        </p>
+
+
+
+        <form id="journalForm" class="space-y-8">
+
+            <!-- Top Metrics -->
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-red-50 p-6 rounded-lg border border-red-200">
+
+                <div>
+
+                    <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Date:</label>
+
+                    <input type="date" id="date" name="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-red-500 focus:border-red-500" required>
+
+                </div>
+
+                <div>
+
+                    <label for="sleepHrs" class="block text-sm font-medium text-gray-700 mb-1">Sleep (hrs):</label>
+
+                    <input type="number" id="sleepHrs" name="sleepHrs" min="0" max="24" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-red-500 focus:border-red-500" required>
+
+                </div>
+
+                <div>
+
+                    <label for="wakingEnergy" class="block text-sm font-medium text-gray-700 mb-1">Waking energy (1–10):</label>
+
+                    <input type="number" id="wakingEnergy" name="wakingEnergy" min="1" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-red-500 focus:border-red-500" required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Red Line & Keystone Block -->
+
+            <div class="space-y-6">
+
+                <div>
+
+                    <label for="redLine" class="block text-lg font-medium text-red-700 mb-2">Today’s Red Line (one non‑negotiable):</label>
+
+                    <input type="text" id="redLine" name="redLine" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 text-gray-800 focus:ring-red-500 focus:border-red-500" placeholder="e.g., Finish report draft" required>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <div>
+
+                        <label for="keystoneStartTime" class="block text-lg font-medium text-blue-700 mb-2">Keystone Block (start time):</label>
+
+                        <input type="time" id="keystoneStartTime" name="keystoneStartTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-blue-500 focus:border-blue-500" required>
+
+                    </div>
+
+                    <div class="md:col-span-2">
+
+                        <label for="keystoneLength" class="block text-lg font-medium text-blue-700 mb-2">Keystone Block (length, e.g., 50m / 90m):</label>
+
+                        <input type="text" id="keystoneLength" name="keystoneLength" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., 50m" required>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <label for="whyMatters" class="block text-lg font-medium text-purple-700 mb-2">Why this matters (one sentence):</label>
+
+                    <textarea id="whyMatters" name="whyMatters" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 text-gray-800 focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., This project will unlock our next growth phase." required></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Flow Gate Stack -->
+
+            <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+
+                <h2 class="text-xl font-bold text-indigo-700 mb-4">Flow Gate Stack</h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="flowGate" value="sound" class="mr-2"> Sound
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="flowGate" value="light" class="mr-2"> Light
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="flowGate" value="scent" class="mr-2"> Scent
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="flowGate" value="breath" class="mr-2"> Breath
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="flowGate" value="posture" class="mr-2"> Posture
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Distractions I’ll kill -->
+
+            <div class="bg-teal-50 p-6 rounded-lg border border-teal-200">
+
+                <h2 class="text-xl font-bold text-teal-700 mb-4">Distractions I’ll kill</h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="distractions" value="phoneInDrawer" class="mr-2"> Phone in drawer
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="distractions" value="tabsClosed" class="mr-2"> Tabs closed
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="distractions" value="doorSign" class="mr-2"> Door sign
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="distractions" value="notesCaptureOpen" class="mr-2"> Notes capture open
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Block Log -->
+
+            <div class="bg-orange-50 p-6 rounded-lg border border-orange-200">
+
+                <h2 class="text-xl font-bold text-orange-700 mb-4">Block Log</h2>
+
+                <div class="space-y-4">
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+
+                        <div class="md:col-span-1">
+
+                            <label for="b1Target" class="block text-sm font-medium text-gray-700 mb-1">B1 Target:</label>
+
+                            <input type="text" id="b1Target" name="b1Target" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., Draft intro">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b1Flow" class="block text-sm font-medium text-gray-700 mb-1">Flow (0–10):</label>
+
+                            <input type="number" id="b1Flow" name="b1Flow" min="0" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b1Win" class="block text-sm font-medium text-gray-700 mb-1">Win:</label>
+
+                            <input type="text" id="b1Win" name="b1Win" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., Intro 80% done">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+
+                        <div class="md:col-span-1">
+
+                            <label for="b2Target" class="block text-sm font-medium text-gray-700 mb-1">B2 Target:</label>
+
+                            <input type="text" id="b2Target" name="b2Target" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., Research section 1">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b2Flow" class="block text-sm font-medium text-gray-700 mb-1">Flow (0–10):</label>
+
+                            <input type="number" id="b2Flow" name="b2Flow" min="0" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b2Win" class="block text-sm font-medium text-gray-700 mb-1">Win:</label>
+
+                            <input type="text" id="b2Win" name="b2Win" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., 3 key sources identified">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+
+                        <div class="md:col-span-1">
+
+                            <label for="b3Target" class="block text-sm font-medium text-gray-700 mb-1">B3 Target:</label>
+
+                            <input type="text" id="b3Target" name="b3Target" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., Outline conclusion">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b3Flow" class="block text-sm font-medium text-gray-700 mb-1">Flow (0–10):</label>
+
+                            <input type="number" id="b3Flow" name="b3Flow" min="0" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500">
+
+                        </div>
+
+                        <div>
+
+                            <label for="b3Win" class="block text-sm font-medium text-gray-700 mb-1">Win:</label>
+
+                            <input type="text" id="b3Win" name="b3Win" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-orange-500 focus:border-orange-500" placeholder="e.g., Conclusion structure clear">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Training Notes / Feedback -->
+
+            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Training Notes / Feedback I noticed:</h2>
+
+                <textarea id="trainingNotes" name="trainingNotes" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 text-gray-800 focus:ring-gray-500 focus:border-gray-500" placeholder="e.g., Noticed better focus after a short walk."></textarea>
+
+            </div>
+
+
+
+            <!-- Recovery & Shutdown -->
+
+            <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+
+                <h2 class="text-xl font-bold text-red-700 mb-4">Recovery & Shutdown (choose 1–2)</h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="recoveryShutdown" value="10minWalk" class="mr-2"> 10‑min walk
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="recoveryShutdown" value="stretch" class="mr-2"> Stretch
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="recoveryShutdown" value="breath" class="mr-2"> Breath
+
+                    </label>
+
+                    <label class="inline-flex items-center text-gray-800 text-lg">
+
+                        <input type="checkbox" name="recoveryShutdown" value="scriptureGratitude" class="mr-2"> Scripture/Gratitude
+
+                    </label>
+
+                </div>
+
+                <div>
+
+                    <label for="shutdownTime" class="block text-sm font-medium text-gray-700 mb-1">Shutdown time:</label>
+
+                    <input type="time" id="shutdownTime" name="shutdownTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-red-500 focus:border-red-500">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Day Score & Proud Of -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-blue-50 p-6 rounded-lg border border-blue-200">
+
+                <div>
+
+                    <label for="dayScore" class="block text-sm font-medium text-gray-700 mb-1">Day Score (0–10):</label>
+
+                    <input type="number" id="dayScore" name="dayScore" min="0" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-blue-500 focus:border-blue-500" required>
+
+                </div>
+
+                <div>
+
+                    <label for="proudOf" class="block text-sm font-medium text-gray-700 mb-1">One thing I’m proud of:</label>
+
+                    <input type="text" id="proudOf" name="proudOf" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Stayed focused for 3 blocks">
+
+                </div>
+
+            </div>
+
+
+
+            <div class="text-center mt-10">
+
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
+
+                    Save Daily Journal
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+        <!-- Message Box for feedback -->
+
+        <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center max-w-sm w-full mx-4 border border-red-300">
+
+                <h3 id="messageTitle" class="text-xl font-bold text-red-600 mb-4"></h3>
+
+                <p id="messageContent" class="text-gray-700 mb-6"></p>
+
+                <button id="closeMessageBox" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Got It</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // Function to show custom message box
+
+        function showMessageBox(title, content) {
+
+            const messageBox = document.getElementById('messageBox');
+
+            document.getElementById('messageTitle').textContent = title;
+
+            document.getElementById('messageContent').textContent = content;
+
+            messageBox.classList.remove('hidden');
+
+        }
+
+
+
+        // Function to close custom message box
+
+        document.getElementById('closeMessageBox').addEventListener('click', function() {
+
+            document.getElementById('messageBox').classList.add('hidden');
+
+        });
+
+
+
+        document.getElementById('journalForm').addEventListener('submit', function(event) {
+
+            event.preventDefault(); // Prevent default form submission
+
+
+
+            // Check if all required fields are filled
+
+            const requiredInputs = this.querySelectorAll('[required]');
+
+            let allRequiredFilled = true;
+
+            for (const input of requiredInputs) {
+
+                if (!input.value) {
+
+                    allRequiredFilled = false;
+
+                    break;
+
+                }
+
+            }
+
+
+
+            if (!allRequiredFilled) {
+
+                showMessageBox("Input Missing!", "Please fill out all required fields marked with an asterisk (*).");
+
+                return; // Stop the function if not all required fields are filled
+
+            }
+
+
+
+
+
+            // Collect all form data
+
+            const formData = {
+
+                date: document.getElementById('date').value,
+
+                sleepHrs: parseFloat(document.getElementById('sleepHrs').value),
+
+                wakingEnergy: parseInt(document.getElementById('wakingEnergy').value),
+
+                redLine: document.getElementById('redLine').value,
+
+                keystoneStartTime: document.getElementById('keystoneStartTime').value,
+
+                keystoneLength: document.getElementById('keystoneLength').value,
+
+                whyMatters: document.getElementById('whyMatters').value,
+
+                flowGate: Array.from(document.querySelectorAll('input[name="flowGate"]:checked')).map(cb => cb.value),
+
+                distractions: Array.from(document.querySelectorAll('input[name="distractions"]:checked')).map(cb => cb.value),
+
+                blockLog: [
+
+                    {
+
+                        target: document.getElementById('b1Target').value,
+
+                        flow: document.getElementById('b1Flow').value ? parseInt(document.getElementById('b1Flow').value) : null,
+
+                        win: document.getElementById('b1Win').value
+
+                    },
+
+                    {
+
+                        target: document.getElementById('b2Target').value,
+
+                        flow: document.getElementById('b2Flow').value ? parseInt(document.getElementById('b2Flow').value) : null,
+
+                        win: document.getElementById('b2Win').value
+
+                    },
+
+                    {
+
+                        target: document.getElementById('b3Target').value,
+
+                        flow: document.getElementById('b3Flow').value ? parseInt(document.getElementById('b3Flow').value) : null,
+
+                        win: document.getElementById('b3Win').value
+
+                    }
+
+                ],
+
+                trainingNotes: document.getElementById('trainingNotes').value,
+
+                recoveryShutdown: Array.from(document.querySelectorAll('input[name="recoveryShutdown"]:checked')).map(cb => cb.value),
+
+                shutdownTime: document.getElementById('shutdownTime').value,
+
+                dayScore: parseInt(document.getElementById('dayScore').value),
+
+                proudOf: document.getElementById('proudOf').value
+
+            };
+
+
+
+            // For now, we'll just log the data to the console
+
+            console.log("Daily Journal Data:", formData);
+
+
+
+            // In a real application, you would send this 'formData' to a backend server or a local storage solution (e.g., Firestore).
+
+            // Example: saveDataToFirestore(formData);
+
+
+
+            showMessageBox("Journal Saved!", "Your daily journal entry has been captured. Check the console for the data!");
+
+
+
+            // Optionally, clear the form after successful submission
+
+            // this.reset();
+
+        });
+
+
+
+        // Set today's date as default
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const today = new Date();
+
+            const year = today.getFullYear();
+
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+
+            const day = String(today.getDate()).padStart(2, '0');
+
+            document.getElementById('date').value = `${year}-${month}-${day}`;
+
+        });
+
+
+
+    </script>
+
+<script id="rec-save-engine">
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    const form=document.getElementById("journalForm");
+    if(!form)return;
+    const key="rec.os.journal.v2";
+    const all=Array.from(form.querySelectorAll('input,textarea,select')).filter(el=>el.name||el.id);
+    const fieldKey=(el)=>el.id||el.name;
+    const note=document.createElement('p'); note.className='rec-save-note';note.setAttribute('role','status');note.textContent='Your entries save in this browser as you type. They are not synced to other devices.';
+    form.parentNode.insertBefore(note,form);
+    const restore=()=>{
+      try{
+        const obj=JSON.parse(localStorage.getItem(key)||'{}');
+        for(const el of all){
+          const val=obj[fieldKey(el)];if(val===undefined)continue;
+          if(el.type==='checkbox'||el.type==='radio')el.checked=Array.isArray(val)?val.includes(el.value):val===true||val===el.value;
+          else el.value=val;
+        }
+      }catch(e){note.textContent='Browser storage is unavailable. Use a private copy or print to retain your entry.'}
+    };
+    let hold;
+    const save=()=>{
+      const obj={};
+      for(const el of all){
+        const id=fieldKey(el);
+        if(el.type==='checkbox'||el.type==='radio'){
+          if(!obj[id])obj[id]=[];
+          if(el.checked)obj[id].push(el.value);
+        }else obj[id]=el.value;
+      }
+      try{localStorage.setItem(key,JSON.stringify(obj));note.textContent='Saved on this device · '+new Date().toLocaleTimeString(); }
+      catch(e){note.textContent='Could not save to this browser. Copy your answers before leaving.'}
+    };
+    restore();
+    form.addEventListener('input',()=>{clearTimeout(hold);hold=setTimeout(save,400)});
+    form.addEventListener('change',save);
+    form.addEventListener('submit',save,true);
+  });
+})();
+</script></body>
+
+</html>
+
